@@ -1,10 +1,12 @@
+import { loginGoogle } from "../firebase/firebase.js";
+
 export const signup = () => {
   const viewSingUp = document.createElement("div");
   viewSingUp.classList.add("signup-container");
   viewSingUp.innerHTML = `
   <main>
         <div class="logo-container">
-          <img src="/assets/logo.webp" alt="logo" />
+          <img src="./assets/logo.webp" alt="logo" />
           <h1>Purrfect Books</h1>
         </div>
         <form id="signup-form">
@@ -48,7 +50,7 @@ export const signup = () => {
           <div class="signin-google">
             <p>o</p>
             <button type="button" id="login-google" class="login-google-btn">
-              <img src="/assets/btn_google_signin.png" alt="logo-google" />
+              <img src="./assets/btn_google_signin.png" alt="logo-google" />
             </button>
           </div>
           <div>
@@ -57,5 +59,10 @@ export const signup = () => {
         </form>
       </main>
 `;
+  viewSingUp.querySelector("#login-google").addEventListener("click", (e) => {
+    loginGoogle();
+    // console.log("hola");
+  });
+
   return viewSingUp;
 };
