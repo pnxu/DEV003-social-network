@@ -1,8 +1,8 @@
 import { loginGoogle } from "../firebase/firebase.js";
 
 export const login = () => {
-  const viewLogIn = document.createElement('div');
-  viewLogIn.classList.add('login-container');
+  const viewLogIn = document.createElement("div");
+  viewLogIn.classList.add("login-container");
   viewLogIn.innerHTML = `
   <main>
   <div class="container">
@@ -20,12 +20,12 @@ export const login = () => {
       <label for="login-password">Contraseña</label>
       <input type="password" id="login-password" class="login-input" placeholder="**************"/>
     </div>
-    <div class="signup-btn">
+    <div class="signup-container-btn">
     <button type="submit" id="login-button" class="login-btn">
       Iniciar sesión
     </button>
     </div>
-    <div class="signin-google">
+    <div class="login-google">
     <p>o</p>
     <button type="button" id="login-google" class="login-google-btn">
       <img src="./assets/btn_google_signin.png" alt="logo-google" />
@@ -41,9 +41,8 @@ export const login = () => {
   </div>
 </main>
 `;
-  viewLogIn.querySelector('#login-google').addEventListener('click', (e) => {
-  loginGoogle();
+  viewLogIn.querySelector("#login-google").addEventListener("click", (e) => {
+    loginGoogle();
   });
   return viewLogIn;
 };
-
