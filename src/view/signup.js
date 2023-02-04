@@ -1,4 +1,8 @@
-import { loginGoogle, newRegister } from "../firebase/firebase.js";
+import {
+  loginGoogle,
+  newRegister,
+  sendVerification,
+} from "../firebase/firebase.js";
 
 export const signup = () => {
   const viewSingUp = document.createElement("div");
@@ -53,7 +57,8 @@ export const signup = () => {
               Regístrar
             </button>
           </div>
-          <div class="login-google">
+        </form>
+        <div class="login-google">
             <p>o</p>
             <button type="button" id="login-google" class="login-google-btn">
               <img src="./assets/btn_google_signin.png" alt="logo-google" />
@@ -62,7 +67,6 @@ export const signup = () => {
           <div class="signup-span">
           <span>¿Ya tienes cuenta?<a href="#/login" class="span-btn"> Ingresa aquí.</a></span>
           </div>
-        </form>
         </div>
       </main>
 `;
@@ -71,25 +75,24 @@ export const signup = () => {
     // console.log("hola");
   });
 
-  viewSingUp.querySelector(".signup-btn").addEventListener("click", (e) => {
-    e.preventDefault();
-    const email = document.querySelector("#signup-email").value;
-    const password = document.querySelector("#signup-password").value;
-    console.log("click");
-    newRegister(email, password)
-      .then((userCredential) => {
-        console.log("signup");
-        // Signed in
+  viewSingUp
+    .querySelector(".signup-btn")
+    .addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        const email = document.querySelector("#signup-email").value;
+        const password = document.querySelector("#signup-password").value;
+        const userCredential = await newRegister(email, password);
         const user = userCredential.user;
+        await sendVerification();
+        alert("se envio un mail de verificacion");
         console.log(user);
-        // ...
-      })
-      .catch((error) => {
+        return true;
+      } catch (error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
-        // ..
-      });
-  });
+      }
+    });
   return viewSingUp;
 };

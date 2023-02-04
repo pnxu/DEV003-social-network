@@ -107,6 +107,13 @@ body {
   color: #542f17;
   padding: 10px;
 }
+
+.error-feedback {
+  color: red;
+  padding: 8px;
+  font-size: 15px;
+}
+
 /* container boton iniciar sesion y registro */
 .signup-container-btn {
   margin-left: 9em;
