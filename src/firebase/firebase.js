@@ -24,8 +24,8 @@ export const loginEmail = (email, password) => {
 };
 
 // REGISTRO CON CORREO Y CONSTRASEÑA
-export const newRegister = (email, password) => {
-  return createUserWithEmailAndPassword(auth, email, password);
+export const newRegister = (email, password, nickname) => {
+  return createUserWithEmailAndPassword(auth, email, password, nickname);
 };
 
 // GOOGLE SIGNIN

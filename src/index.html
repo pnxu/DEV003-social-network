@@ -46,52 +46,62 @@
           <img src="" alt="logo" />
           <h1>App de lectura</h1>
         </div>
-        <form id="signup-form">
-          <div class="signup-item">
-            <p>Nombre de usuario</p>
+        <form action="" method="POST" id="signup-form">
+        <div class="signup-item" id="signup-user-div">
+            <label for="signup-user" class="form-label">Nombre de usuario</label>
+            <div class="form-imput">
             <input
               type="text"
-              id="signup-username"
-              placeholder="ej: @juan-perez"
+              class="signup-field"
+              id="signup-user"
+              name="signup-user"
+              id="signup-user"
+              placeholder="ej: @anita-vega"
             />
+        </div>
           </div>
-          <div class="signup-item">
-            <p>Correo</p>
+          <div class="signup-item"id="signup-email-div">
+            <label for="signup-email" class="form-label">Correo</label>
+           <div>
             <input
               type="email"
+              class="signup-field"
               id="signup-email"
+              name="signup-email"
               placeholder="ejemplo@email.com"
             />
+        </div>
           </div>
-          <div class="signup-item">
-            <p>Contraseña</p>
+          <div class="signup-item" id="signup-password-div">
+            <label for="signup-password" class="form-label">Contraseña</label>
+            <div class="form-imput">
             <input
               type="password"
+              class="signup-field"
               id="signup-password"
+              name="signup-password"
               placeholder="**************"
             />
+            </div>
           </div>
-          <div class="signup-item">
-            <p>Confirmar contraseña</p>
+            <div class="signup-item" id="signup-conf-password-div">
+            <label for="signup-conf-password" class="form-label">Confirmar contraseña</label>
+            <div class="form-imput">
             <input
               type="password"
-              id="signup-confirm-password"
+              class="signup-field"
+              id="signup-conf-password"
+              name="signup-conf-password"
               placeholder="**************"
             />
+            </div> 
           </div>
+          
           <div class="signin-btn">
             <button type="submit" id="signup-button" class="signup-btn">
-              Iniciar sesión
+            Registrarse
             </button>
-          </div>
-          <div class="signin-google">
-            <p>o</p>
-            <button type="button" id="login-google" class="login-google-btn">
-              <img src="/assets/btn_google_signin.png" alt="logo-google" />
-            </button>
-          </div>
-          <div>
-            <span>¿Ya tienes cuenta?<a href="#/login" class="span-btn"> Ingresa aquí</a></span>
+            <p class="warnings" id="warnings"></p>
           </div>
         </form>
       </main> -->
