@@ -22,7 +22,7 @@ export const login = () => {
       <span class="error-feedback" id="error-feedback"></span>
     </div>
     <div class="signup-container-btn">
-    <button type="submit" id="login-button" class="login-btn">
+    <button type="submit" id="login-form-button" class="login-btn">
       Iniciar sesión
     </button>
     </div>
@@ -41,17 +41,12 @@ export const login = () => {
   </div>
   </main>
   `;
-  const loginForm = viewLogIn.querySelector("#login-form");
-  loginForm.addEventListener("submit", async (e) => {
+  const loginForm = viewLogIn.querySelector("#login-form-button");
+  loginForm.addEventListener("click", async (e) => {
     e.preventDefault();
     try {
       const email = document.querySelector("#login-email").value;
       const password = document.querySelector("#login-password").value;
-      const errorTexts = viewLogIn.querySelectorAll(".error-text");
-
-      errorTexts.forEach((errorText) => {
-        errorText.style.display = "none";
-      });
       const response = await loginEmail(email, password);
 
       console.log({ response });
@@ -67,21 +62,22 @@ export const login = () => {
   });
   return viewLogIn;
 };
-// FUNCION QUE CONTROLA LOS ERRORES
+
+// FUNCION QUE MANEJA LOS ERRORES DEL LOGIN
 const loginErrorHandler = (error) => {
   const errorCode = error.code;
   console.log(errorCode);
   const errorFeedback = document.getElementById("error-feedback");
 
   if (errorCode === "auth/invalid-email") {
-    errorFeedback.innerHTML = "Ingresa un mail válido.";
+    errorFeedback.innerHTML = "Ingresa un correo válido.";
   } else if (errorCode === "auth/user-not-found") {
     errorFeedback.innerHTML = "Usuario no registrado.";
   } else if (errorCode === "auth/internal-error") {
     errorFeedback.innerHTML = "Ingresa una constraseña.";
   } else if (errorCode === "auth/wrong-password") {
-    errorFeedback.innerHTML = "Correo o contraseña inválida";
+    errorFeedback.innerHTML = "Correo y/o contraseña inválidos.";
   } else if (errorCode === "auth/too-many-requests") {
-    errorFeedback.innerHTML = "too many requests";
+    errorFeedback.innerHTML = "Se han realizado demasiados intentos fállidos.";
   }
 };

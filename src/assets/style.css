@@ -157,6 +157,9 @@ body {
   color: #f57b53;
 }
 
+.error-text {
+  color: red;
+}
 /* ************************************************ */
 /* DASHBOARD VIEW */
 
