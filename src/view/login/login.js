@@ -1,8 +1,10 @@
-import { loginEmail, loginGoogle } from "../firebase/firebase.js";
+import { loginEmail, loginGoogle } from '../../firebase/firebase.js';
+
+import { loginErrorHandler } from './login-error-handler.js';
 
 export const login = () => {
-  const viewLogIn = document.createElement("div");
-  viewLogIn.classList.add("login-container");
+  const viewLogIn = document.createElement('div');
+  viewLogIn.classList.add('login-container');
   viewLogIn.innerHTML = `
   <main>
   <div class="container">
@@ -41,43 +43,24 @@ export const login = () => {
   </div>
   </main>
   `;
-  const loginForm = viewLogIn.querySelector("#login-form-button");
-  loginForm.addEventListener("click", async (e) => {
+  const loginForm = viewLogIn.querySelector('#login-form-button');
+  loginForm.addEventListener('click', async (e) => {
     e.preventDefault();
     try {
-      const email = document.querySelector("#login-email").value;
-      const password = document.querySelector("#login-password").value;
+      const email = document.querySelector('#login-email').value;
+      const password = document.querySelector('#login-password').value;
       const response = await loginEmail(email, password);
 
       console.log({ response });
-      window.location.hash = "#/dashboard";
+      window.location.hash = '#/dashboard';
     } catch (err) {
       loginErrorHandler(err);
     }
   });
   // LOGIN GOOGLE
-  const loginGoogleBtn = viewLogIn.querySelector("#login-google");
-  loginGoogleBtn.addEventListener("click", (e) => {
+  const loginGoogleBtn = viewLogIn.querySelector('#login-google');
+  loginGoogleBtn.addEventListener('click', () => {
     loginGoogle();
   });
   return viewLogIn;
-};
-
-// FUNCION QUE MANEJA LOS ERRORES DEL LOGIN
-const loginErrorHandler = (error) => {
-  const errorCode = error.code;
-  console.log(errorCode);
-  const errorFeedback = document.getElementById("error-feedback");
-
-  if (errorCode === "auth/invalid-email") {
-    errorFeedback.innerHTML = "Ingresa un correo válido.";
-  } else if (errorCode === "auth/user-not-found") {
-    errorFeedback.innerHTML = "Usuario no registrado.";
-  } else if (errorCode === "auth/internal-error") {
-    errorFeedback.innerHTML = "Ingresa una constraseña.";
-  } else if (errorCode === "auth/wrong-password") {
-    errorFeedback.innerHTML = "Correo y/o contraseña inválidos.";
-  } else if (errorCode === "auth/too-many-requests") {
-    errorFeedback.innerHTML = "Se han realizado demasiados intentos fállidos.";
-  }
 };

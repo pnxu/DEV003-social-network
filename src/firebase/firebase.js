@@ -1,4 +1,3 @@
-import { app } from "../firebase/firebase-config.js";
 import {
   getAuth,
   signInWithPopup,
@@ -6,7 +5,10 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
-} from "https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js";
+  signOut,
+} from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
+import { app } from './firebase-config.js';
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 const provider = new GoogleAuthProvider();
@@ -34,20 +36,32 @@ export const loginGoogle = () => {
     .then((result) => {
       // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
-      const token = credential.accessToken;
+      // const token = credential.accessToken;
       // The signed-in user info.
-      const user = result.user;
+      // const user = result.user;
       alert(result.user.displayName);
       // ...
     })
     .catch((error) => {
       // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
       // The email of the user's account used.
-      const email = error.customData.email;
+      // const email = error.customData.email;
       // The AuthCredential type that was used.
-      const credential = GoogleAuthProvider.credentialFromError(error);
+      // const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
+    });
+};
+
+export const logout = () => {
+  signOut(auth)
+    .then(() => {
+      console.log('logout');
+      window.location.hash = '#/login';
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      // An error happened.
     });
 };

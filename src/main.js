@@ -7,16 +7,16 @@
 import { router } from './lib/router.js';
 
 const init = () => {
-    window.location.hash = '#/login';
-    router(window.location.hash);
-    // observador();
-  };
-  init();
+  window.location.hash = '#/login';
+  router(window.location.hash);
+  // observador();
+};
+init();
 
-  window.addEventListener('hashchange', () => {
-    router(window.location.hash);
-  });
-  
+window.addEventListener('hashchange', () => {
+  router(window.location.hash);
+});
+
 // const init = () => {
 //     window.addEventListener('hashchange', () => console.log(window.location.hash))
 // }
