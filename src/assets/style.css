@@ -53,15 +53,20 @@ body {
 /* LOGO */
 .logo-container {
   display: flex;
+  background-color: #DECFB5;
+  height: 110px;
+  width: 400px;
+  margin-top: 0;
 }
 
 .logo-container img {
   object-fit: cover;
-  width: 100px;
-  height: 100px;
+  height: 80px;
+  margin-left: 25px;
+  margin-top: 15px ;
 }
 .logo-container h1 {
-  margin-top: 60px;
+  margin-top: 40px;
 }
 
 /* ************************************************ */
@@ -162,9 +167,63 @@ body {
 }
 /* ************************************************ */
 /* DASHBOARD VIEW */
+.signup-input {
+  border: 1px solid #8c4e2a;
+  border-radius: 15px;
+  background-color: #decfb5;
+}
+.label-signup{
+  text-align: center;
+  color: #542f17;
+  padding: 0px;
+}
+.signup-btn {
+  background-color: #f57b53;
+  border: 1px solid #a6977b;
+  border-radius: 15px;
+  color: #fff;
+  padding: 15px;
+}
 
+.signup-span {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.signup-span a {
+  color: #f57b53;
+}
+
+.error-text {
+  color: red;
+}
 /* ************************************************ */
 /* FOOTER */
+.footer-container{
+  background-color: #DECFB5;
+  height: 110px;
+  width: 400px;
+  margin-top: 10px;
+  display: flex;
+
+}
+ footer{
+  text-align: center;
+ 
+}
+/*nombre y logo github*/
+.nombres{
+  display: flex;
+}
+.name-footer{
+  text-align: center;
+  margin:  2px 38px;
+  color: #6583BF;
+}
+.logo-github{
+  height: 30px;
+  margin: 0 50px;
+}
 
 @media only screen and (min-width: 800px) {
   .container {
