@@ -2,12 +2,12 @@ import {
   loginGoogle,
   newRegister,
   sendVerification,
-} from "../firebase/firebase.js";
+} from '../../firebase/firebase.js';
 
 export const signup = () => {
-  const viewSingUp = document.createElement("div");
-  viewSingUp.classList.add("signup-container");
-  viewSingUp.innerHTML = `
+  const viewSignUp = document.createElement('div');
+  viewSignUp.classList.add('signup-container');
+  viewSignUp.innerHTML = `
   <main>
   <div class="container">
     <div class="logo-container">
@@ -79,30 +79,30 @@ export const signup = () => {
 </main>
 `;
   // GOOGLE LOGIN
-  viewSingUp.querySelector("#login-google").addEventListener("click", (e) => {
+  viewSignUp.querySelector('#login-google').addEventListener('click', () => {
     loginGoogle();
     // console.log("hola");
   });
 
   // REGISTRO
-  viewSingUp
-    .querySelector("#signup-submit-button")
-    .addEventListener("click", async (e) => {
+  viewSignUp
+    .querySelector('#signup-submit-button')
+    .addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        const email = document.querySelector("#signup-email").value;
-        const password = document.querySelector("#signup-password").value;
+        const email = document.querySelector('#signup-email').value;
+        const password = document.querySelector('#signup-password').value;
         const passwordConfirm = document.querySelector(
-          "#signup-confirm-password"
+          '#signup-confirm-password',
         ).value;
-        const nickname = document.querySelector("#signup-nickname").value;
+        const nickname = document.querySelector('#signup-nickname').value;
 
         // console.log({ email, password, passwordConfirm, nickname });
         const emailIsValid = validateEmail(email);
         const passwordIsValid = validatePassword(password);
         const passwordConfirmIsValid = validateConfirmPassword(
           password,
-          passwordConfirm
+          passwordConfirm,
         );
         const nicknameIsValid = validateNickname(nickname);
         if (
@@ -119,83 +119,85 @@ export const signup = () => {
         const user = userCredential.user;
         console.log({ userCredential, user });
         await sendVerification();
-        alert("Se envío un enlace de verificación a tu correo.");
-        window.location.hash = "#/login";
+        alert('Se envío un enlace de verificación a tu correo.');
+        window.location.hash = '#/login';
         console.log(user);
         return true;
       } catch (err) {
         signupErrorHandler(err);
       }
     });
-  return viewSingUp;
+  return viewSignUp;
 };
 // FUNCION PARA VALIDAR INPUT DEL CORREO
 const validateEmail = (email) => {
-  const emailErrorText = document.getElementById("email-validation");
-  console.log({ function: "validateEmail", email });
-  emailErrorText.innerHTML = "";
+  const emailErrorText = document.getElementById('email-validation');
+  console.log({ function: 'validateEmail', email });
+  emailErrorText.innerHTML = '';
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     // console.log("Email is valid");
     return true;
   } else {
     // console.log("Email is invalid");
-    emailErrorText.innerHTML = "El correo ingresado no es válido.";
+    emailErrorText.innerHTML = 'El correo ingresado no es válido.';
     return false;
   }
 };
+
 // FUNCION PARA VALIDAR INPUT DE LA CONTRASEÑA
-const validatePassword = (password) => {
-  const passwordErrorText = document.getElementById("password-validation");
-  passwordErrorText.innerHTML = "";
+export const validatePassword = (password) => {
+  const passwordErrorText = document.getElementById('password-validation');
+  passwordErrorText.innerHTML = '';
   if (password.length === 0) {
-    passwordErrorText.innerHTML = "Este campo no puede estar vacío.";
+    passwordErrorText.innerHTML = 'Este campo no puede estar vacío.';
     return false;
   } else if (password.length < 6) {
     passwordErrorText.innerHTML =
-      "La contraseña debe tener un mínimo de 6 caracteres.";
+      'La contraseña debe tener un mínimo de 6 caracteres.';
     return false;
   } else if (password.length > 16) {
     passwordErrorText.innerHTML =
-      "La contraseña debe tener un máximo de 16 caracteres.";
+      'La contraseña debe tener un máximo de 16 caracteres.';
     return false;
   } else {
     return true;
   }
 };
 // FUNCION PARA VALIDAR INPUT DE CONFIRMAR CONTRASEÑA
-const validateConfirmPassword = (password, passwordConfirm) => {
+export const validateConfirmPassword = (password, passwordConfirm) => {
   const passwordConfirmErrorText = document.getElementById(
-    "password-confirm-validation"
+    'password-confirm-validation',
   );
-  passwordConfirmErrorText.innerHTML = "";
+  passwordConfirmErrorText.innerHTML = '';
   if (passwordConfirm.length === 0) {
-    passwordConfirmErrorText.innerHTML = "Este campo no puede estar vacío.";
+    passwordConfirmErrorText.innerHTML = 'Este campo no puede estar vacío.';
     return false;
   } else if (passwordConfirm !== password) {
-    passwordConfirmErrorText.innerHTML = "Las contraseñas no coinciden.";
+    passwordConfirmErrorText.innerHTML = 'Las contraseñas no coinciden.';
     return false;
   } else {
     return true;
   }
 };
 // FUNCION PARA VALIDAR EL NICKNAME
-const validateNickname = (nickname) => {
-  const nicknameErrorText = document.getElementById("nickname-validation");
-  nicknameErrorText.innerHTML = "";
+export const validateNickname = (nickname) => {
+  const nicknameErrorText = document.getElementById('nickname-validation');
+  nicknameErrorText.innerHTML = '';
   if (nickname.length === 0) {
-    nicknameErrorText.innerHTML = "Debe ingresar un nombre.";
+    nicknameErrorText.innerHTML = 'Debe ingresar un nombre.';
     return false;
   } else if (nickname.length > 8) {
-    nicknameErrorText.innerHTML = "Debe tener máximo 8 caracteres.";
+    nicknameErrorText.innerHTML = 'Debe tener máximo 8 caracteres.';
     return false;
   } else {
     return true;
   }
 };
-// FUNCION QUE MANEJA LOS ERRORES DEL SIGNUP
-const signupErrorHandler = (error) => {
-  const errorCode = error.code;
-  if (errorCode === "auth/email-already-in-use") {
-    alert("Este correo ya está en uso.");
-  };
 
+// FUNCION QUE MANEJA LOS ERRORES DEL SIGNUP
+export const signupErrorHandler = (error) => {
+  const errorCode = error.code;
+  if (errorCode === 'auth/email-already-in-use') {
+    alert('Este correo ya está en uso.');
+  }
+};
