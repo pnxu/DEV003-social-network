@@ -4,6 +4,8 @@ import {
   sendVerification,
 } from '../../firebase/firebase.js';
 
+import { footer } from '../../components/footer.js'
+
 export const signup = () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup-container');
@@ -127,6 +129,7 @@ export const signup = () => {
         signupErrorHandler(err);
       }
     });
+    viewSignUp.appendChild(footer());
   return viewSignUp;
 };
 // FUNCION PARA VALIDAR INPUT DEL CORREO
