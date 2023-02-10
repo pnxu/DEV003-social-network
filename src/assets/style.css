@@ -166,7 +166,8 @@ body {
   color: red;
 }
 /* ************************************************ */
-/* DASHBOARD VIEW */
+
+
 .signup-input {
   border: 1px solid #8c4e2a;
   border-radius: 15px;
@@ -197,6 +198,54 @@ body {
 .error-text {
   color: red;
 }
+/* DASHBOARD VIEW */
+
+.post-container {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  /* height: 100vh; */
+  width: 400px;
+  margin: 50px auto;
+}
+.post-container h4 {
+  margin-top: 20px;
+  margin-left: 10px;
+}
+.post-container input {
+  color: #542f17;
+  margin-top: 1px;
+  margin-bottom: 15px;
+  margin-left: 9px;
+  border: 1px solid #8c4e2a;
+  background-color: #decfb5;
+  height: 30px;
+  min-width: 380px;
+  padding: 15px;
+}
+
+.post-container textarea {
+  color: #542f17;
+  margin-bottom: 15px;
+  margin-left: 9px;
+  border: 1px solid #8c4e2a;
+  background-color: #decfb5;
+  height: 200px;
+  min-width: 380px;
+  /*padding: 15px;*/
+}
+.button-post-save {
+  background-color: #f57b53;
+  border: 1px solid #a6977b;
+  border-radius: 15px;
+  color: #fff;
+  padding: 15px;
+  margin-left: 150px;
+}
+
 /* ************************************************ */
 /* FOOTER */
 .footer-container{
