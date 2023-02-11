@@ -62,7 +62,7 @@ export const signup = () => {
   </main>
 `;
   // GOOGLE LOGIN
-  viewSignUp.querySelector('#login-google').addEventListener('click', (e) => {
+  viewSignUp.querySelector('#login-google').addEventListener('click', () => {
     loginGoogle();
     // console.log("hola");
   });
@@ -70,6 +70,7 @@ export const signup = () => {
   // REGISTRO
   viewSignUp
     .querySelector('#signup-submit-button')
+
     .addEventListener('click', async (e) => {
       e.preventDefault();
       try {
@@ -89,10 +90,10 @@ export const signup = () => {
         );
         const nicknameIsValid = validateNickname(nickname);
         if (
-          !emailIsValid ||
-          !passwordIsValid ||
-          !passwordConfirmIsValid ||
-          !nicknameIsValid
+          !emailIsValid
+          || !passwordIsValid
+          || !passwordConfirmIsValid
+          || !nicknameIsValid
         ) {
           return false;
         }

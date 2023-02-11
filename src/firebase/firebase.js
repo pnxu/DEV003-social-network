@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
-} from 'https://www.gstatic.com/firebasejs/9.16.0/firebase-auth.js';
+} from 'firebase/auth';
 import { app } from './firebase-config.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -16,19 +16,13 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
 // CORREO DE VERIFICACION
-export const sendVerification = () => {
-  return sendEmailVerification(auth.currentUser);
-};
+export const sendVerification = () => sendEmailVerification(auth.currentUser);
 
 // LOGIN CON CORREO Y CONTRASEÑA
-export const loginEmail = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password);
-};
+export const loginEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
 
 // REGISTRO CON CORREO Y CONSTRASEÑA
-export const newRegister = (email, password, nickname) => {
-  return createUserWithEmailAndPassword(auth, email, password, nickname);
-};
+export const newRegister = (email, password, nickname) => createUserWithEmailAndPassword(auth, email, password, nickname);
 
 // GOOGLE SIGNIN
 export const loginGoogle = () => {
