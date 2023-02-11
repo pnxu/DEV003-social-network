@@ -1,8 +1,9 @@
 import { loginEmail, loginGoogle } from '../../firebase/firebase.js';
 
 import { loginErrorHandler } from './login-error-handler.js';
- 
-import { footer } from '../../components/footer.js'
+
+import { footer } from '../../components/footer.js';
+
 export const login = () => {
   const viewLogIn = document.createElement('div');
   viewLogIn.classList.add('login-container');
@@ -63,6 +64,6 @@ export const login = () => {
   loginGoogleBtn.addEventListener('click', () => {
     loginGoogle();
   });
-  viewLogIn.appendChild(footer())
+  viewLogIn.appendChild(footer());
   return viewLogIn;
 };

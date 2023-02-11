@@ -1,6 +1,6 @@
 import { login } from '../view/login/login.js';
 import { signup } from '../view/signup/signup.js';
-import { dashboard } from '../view/dashboard.js';
+import { dashboard } from '../view/dashboard/dashboard.js';
 
 export const router = (hash) => {
   const containerRoot = document.getElementById('root');
