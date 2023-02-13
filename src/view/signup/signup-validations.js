@@ -8,7 +8,8 @@ export const validateEmail = (email) => {
     return true;
   }
   // console.log("Email is invalid");
-  emailErrorText.innerHTML = 'El correo ingresado no es válido.';
+  emailErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+  <span>El correo ingresado no es válido.</span>`;
   return false;
 };
 // FUNCION PARA VALIDAR INPUT DE LA CONTRASEÑA
@@ -16,13 +17,16 @@ export const validatePassword = (password) => {
   const passwordErrorText = document.getElementById('password-validation');
   passwordErrorText.innerHTML = '';
   if (password.length === 0) {
-    passwordErrorText.innerHTML = 'Este campo no puede estar vacío.';
+    passwordErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Este campo no puede estar vacío.</span>`;
     return false;
   } if (password.length < 6) {
-    passwordErrorText.innerHTML = 'La contraseña debe tener un mínimo de 6 caracteres.';
+    passwordErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>La contraseña debe tener un mínimo de 6 caracteres.</span>`;
     return false;
   } if (password.length > 16) {
-    passwordErrorText.innerHTML = 'La contraseña debe tener un máximo de 16 caracteres.';
+    passwordErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>La contraseña debe tener un máximo de 16 caracteres.</span>`;
     return false;
   }
   return true;
@@ -34,10 +38,12 @@ export const validateConfirmPassword = (password, passwordConfirm) => {
   );
   passwordConfirmErrorText.innerHTML = '';
   if (passwordConfirm.length === 0) {
-    passwordConfirmErrorText.innerHTML = 'Este campo no puede estar vacío.';
+    passwordConfirmErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Este campo no puede estar vacío.</span>`;
     return false;
   } if (passwordConfirm !== password) {
-    passwordConfirmErrorText.innerHTML = 'Las contraseñas no coinciden.';
+    passwordConfirmErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Las contraseñas no coinciden.</span>`;
     return false;
   }
   return true;
@@ -47,10 +53,12 @@ export const validateNickname = (nickname) => {
   const nicknameErrorText = document.getElementById('nickname-validation');
   nicknameErrorText.innerHTML = '';
   if (nickname.length === 0) {
-    nicknameErrorText.innerHTML = 'Debe ingresar un nombre.';
+    nicknameErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Debe ingresar un nombre.</span>`;
     return false;
   } if (nickname.length > 8) {
-    nicknameErrorText.innerHTML = 'Debe tener máximo 8 caracteres.';
+    nicknameErrorText.innerHTML = `img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Debe tener máximo 8 caracteres.</span>`;
     return false;
   }
   return true;

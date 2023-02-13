@@ -16,43 +16,11 @@ body {
   color: #542f17;
 }
 
-/* ************************************************ */
-
-/* LOGIN GOOGLE  */
-.login-google {
-  display: flex;
-  flex-direction: column;
-}
-
-.login-google-btn {
-  justify-self: center;
-  border: none;
-  background-color: #f0f0f8;
-  /* padding: 15px; */
-}
-
-.login-google p {
-  text-align: center;
-}
-
-.login-google img {
-  height: 40px;
-  object-fit: cover;
-}
-
-.login-span {
-  text-align: center;
-  padding: 15px;
-  /* margin-top: 15px; */
-}
-
-.login-span a {
-  color: #f57b53;
-}
-
 /* LOGO */
 .logo-container {
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #DECFB5;
   height: 110px;
   width: 400px;
@@ -65,139 +33,12 @@ body {
   margin-left: 25px;
   margin-top: 15px ;
 }
+
 .logo-container h1 {
   margin-top: 40px;
 }
 
-/* ************************************************ */
-/* LOGIN VIEW */
-.container {
-  display: flex;
-  /* flex-wrap: wrap; */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  /* height: 100vh; */
-  width: 400px;
-  margin: 0 auto;
-}
-
-.container h2 {
-  color: #6583bf;
-  font-weight: lighter;
-  text-align: center;
-}
-.container-item input {
-  border: 1px solid #8c4e2a;
-  border-radius: 15px;
-  background-color: #decfb5;
-  height: 30px;
-  padding: 15px;
-}
-
-.container-item input:focus {
-  padding: 15px;
-  color: #542f17;
-  background-color: white;
-}
-.container-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.container-item label {
-  text-align: center;
-  color: #542f17;
-  padding: 10px;
-}
-
-.error-feedback {
-  color: red;
-  padding: 8px;
-  font-size: 15px;
-}
-
-/* container boton iniciar sesion y registro */
-.signup-container-btn {
-  margin-left: 9em;
-  margin-right: 9em;
-  margin-top: 15px;
-  /* margin-left: 100px; */
-}
-
-.login-btn {
-  background-color: #f57b53;
-  border: 1px solid #a6977b;
-  border-radius: 15px;
-  color: #fff;
-  padding: 15px;
-}
-
-/* ************************************************ */
-/* SIGNUP VIEW */
-
-.signup-input {
-  border: 1px solid #8c4e2a;
-  border-radius: 15px;
-  background-color: #decfb5;
-}
-
-.signup-btn {
-  background-color: #f57b53;
-  border: 1px solid #a6977b;
-  border-radius: 15px;
-  color: #fff;
-  padding: 15px;
-}
-
-.signup-span {
-  text-align: center;
-  padding: 15px;
-  margin-top: 15px;
-}
-
-.signup-span a {
-  color: #f57b53;
-}
-
-.error-text {
-  color: red;
-}
-/* ************************************************ */
-
-
-.signup-input {
-  border: 1px solid #8c4e2a;
-  border-radius: 15px;
-  background-color: #decfb5;
-}
-.label-signup{
-  text-align: center;
-  color: #542f17;
-  padding: 0px;
-}
-.signup-btn {
-  background-color: #f57b53;
-  border: 1px solid #a6977b;
-  border-radius: 15px;
-  color: #fff;
-  padding: 15px;
-}
-
-.signup-span {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.signup-span a {
-  color: #f57b53;
-}
-
-.error-text {
-  color: red;
-}
+/* **************************************************** */
 /* DASHBOARD VIEW */
 
 .post-container {
@@ -211,10 +52,12 @@ body {
   width: 400px;
   margin: 50px auto;
 }
+
 .post-container h4 {
   margin-top: 20px;
   margin-left: 10px;
 }
+
 .post-container input {
   color: #542f17;
   margin-top: 1px;
@@ -237,6 +80,7 @@ body {
   min-width: 380px;
   /*padding: 15px;*/
 }
+
 .button-post-save {
   background-color: #f57b53;
   border: 1px solid #a6977b;
@@ -244,6 +88,137 @@ body {
   color: #fff;
   padding: 15px;
   margin-left: 150px;
+}
+
+/* LOGIN & SIGN UP CONTAINER */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0 auto;
+  overflow: hidden; 
+}
+
+.container h2 {
+  color: #6583bf;
+  font-weight: lighter;
+  text-align: center;
+}
+
+.container-item {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-around; */
+  /* flex-wrap: wrap; */
+}
+
+.container-item label, .label-signup {
+  text-align: center;
+  color: #542f17;
+  padding: 10px;
+}
+
+.container-item input {
+  border: 1px solid #8c4e2a;
+  border-radius: 15px;
+  background-color: #decfb5;
+  height: 30px;
+  padding: 15px;
+}
+
+.container-item input:focus {
+  padding: 15px;
+  color: #542f17;
+  background-color: white;
+}
+
+/* error feedback */
+
+.error-feedback-container {
+  display: flex;
+  margin-top: 5px;
+}
+.error-feedback-container span {
+  color: red;
+  font-size: 15px;
+}
+.error-icon {
+  width: 18px;
+  margin-left: 5px;
+  margin-right: 3px;
+}
+
+
+/* container boton iniciar sesion y registro */
+.signup-container-btn {
+  margin-left: 9em;
+  margin-right: 9em;
+  margin-top: 15px;
+}
+
+/* LOGIN */
+.login-btn {
+  background-color: #f57b53;
+  border: 1px solid #a6977b;
+  border-radius: 15px;
+  color: #fff;
+  padding: 15px;
+  cursor: pointer;
+}
+
+/* ************************************************ */
+/* LOGIN GOOGLE  */
+.login-google {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-google-btn {
+  justify-self: center;
+  border: none;
+  background-color: #f0f0f8;
+}
+
+.login-google p {
+  text-align: center;
+}
+
+.login-google img {
+  height: 40px;
+  object-fit: cover;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.login-span.signup-span, .login-span {
+  text-align: center;
+  padding: 15px;
+  /* margin-top: 15px; */
+  color:red;
+}
+
+.login-span a, .signup-span a {
+  color: #f57b53;
+}
+
+
+/* ************************************************ */
+/* SIGNUP VIEW */
+.signup-btn {
+  background-color: #f57b53;
+  border: 1px solid #a6977b;
+  border-radius: 15px;
+  color: #fff;
+  padding: 15px;
+  cursor: pointer;
+}
+
+.signup-span {
+  text-align: center;
+  padding: 15px;
+  margin-top: 15px;
 }
 
 /* ************************************************ */
