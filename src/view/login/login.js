@@ -23,7 +23,7 @@ export const login = () => {
     <div class="container-item">
       <label for="login-password">Contraseña</label>
       <input type="password" id="login-password" class="login-input" placeholder="**************" />
-      <span class="error-feedback" id="error-feedback"></span>
+      <div class="error-feedback-container" id="error-feedback"></div>
     </div>
     <div class="signup-container-btn">
     <button type="submit" id="login-form-button" class="login-btn">

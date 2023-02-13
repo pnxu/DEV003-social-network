@@ -5,14 +5,19 @@ export const loginErrorHandler = (error) => {
   const errorFeedback = document.getElementById('error-feedback');
 
   if (errorCode === 'auth/invalid-email') {
-    errorFeedback.innerHTML = 'Ingresa un correo válido.';
+    errorFeedback.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Ingresa un correo válido.</span>`;
   } else if (errorCode === 'auth/user-not-found') {
-    errorFeedback.innerHTML = 'Usuario no registrado.';
+    errorFeedback.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Usuario no registrado.</span>`;
   } else if (errorCode === 'auth/internal-error') {
-    errorFeedback.innerHTML = 'Ingresa una constraseña.';
+    errorFeedback.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Ingresa una constraseña.</span>`;
   } else if (errorCode === 'auth/wrong-password') {
-    errorFeedback.innerHTML = 'Correo y/o contraseña inválidos.';
+    errorFeedback.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Correo y/o contraseña inválidos.</span>`;
   } else if (errorCode === 'auth/too-many-requests') {
-    errorFeedback.innerHTML = 'Se han realizado demasiados intentos fállidos.';
+    errorFeedback.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
+    <span>Se han realizado demasiados intentos fállidos.</span>`;
   }
 };
