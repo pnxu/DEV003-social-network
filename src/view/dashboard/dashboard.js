@@ -1,13 +1,13 @@
 // import { footer } from "../../components/footer.js";
 
-import { addPost, logout } from "../../firebase/firebase.js";
+import { addPost, logout } from '../../firebase/firebase.js';
 
-import { newPost } from "../../components/post.js";
+import { newPost } from '../../components/post.js';
 // import { newPost } from "../../components/post.js";
 
 export const dashboard = () => {
-  const viewDashboard = document.createElement("div");
-  viewDashboard.classList.add("post-container");
+  const viewDashboard = document.createElement('div');
+  viewDashboard.classList.add('post-container');
   viewDashboard.innerHTML = `
     <div class= "post-div">
       <div class="logo-container">
@@ -36,23 +36,23 @@ export const dashboard = () => {
   `;
 
   // ADDING POST
-  const dashboardPost = viewDashboard.querySelector("#button-post-save");
-  dashboardPost.addEventListener("click", (e) => {
+  const dashboardPost = viewDashboard.querySelector('#button-post-save');
+  dashboardPost.addEventListener('click', (e) => {
     e.preventDefault();
-    const title = viewDashboard.querySelector("#post-title").value;
-    const description = viewDashboard.querySelector("#post-description").value;
-    if (title === "" || description === "") {
-      alert("Debes completar todos los campos");
+    const title = viewDashboard.querySelector('#post-title').value;
+    const description = viewDashboard.querySelector('#post-description').value;
+    if (title === '' || description === '') {
+      alert('Debes completar todos los campos');
     } else {
       addPost(title, description).then(() => {
-        viewDashboard.querySelector("#post-form").reset();
+        viewDashboard.querySelector('#post-form').reset();
       });
       newPost();
     }
   });
 
   // LOGOUT BUTTON
-  viewDashboard.querySelector("#logout-btn").addEventListener("click", (e) => {
+  viewDashboard.querySelector('#logout-btn').addEventListener('click', (e) => {
     e.preventDefault();
     logout();
   });

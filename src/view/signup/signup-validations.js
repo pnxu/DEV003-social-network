@@ -1,8 +1,8 @@
 // FUNCION PARA VALIDAR INPUT DEL CORREO
 export const validateEmail = (email) => {
-  const emailErrorText = document.getElementById("email-validation");
-  console.log({ function: "validateEmail", email });
-  emailErrorText.innerHTML = "";
+  const emailErrorText = document.getElementById('email-validation');
+  console.log({ function: 'validateEmail', email });
+  emailErrorText.innerHTML = '';
   if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     // console.log("Email is valid");
     return true;
@@ -14,8 +14,8 @@ export const validateEmail = (email) => {
 };
 // FUNCION PARA VALIDAR INPUT DE LA CONTRASEÑA
 export const validatePassword = (password) => {
-  const passwordErrorText = document.getElementById("password-validation");
-  passwordErrorText.innerHTML = "";
+  const passwordErrorText = document.getElementById('password-validation');
+  passwordErrorText.innerHTML = '';
   if (password.length === 0) {
     passwordErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
     <span>Este campo no puede estar vacío.</span>`;
@@ -36,9 +36,9 @@ export const validatePassword = (password) => {
 // FUNCION PARA VALIDAR INPUT DE CONFIRMAR CONTRASEÑA
 export const validateConfirmPassword = (password, passwordConfirm) => {
   const passwordConfirmErrorText = document.getElementById(
-    "password-confirm-validation"
+    'password-confirm-validation',
   );
-  passwordConfirmErrorText.innerHTML = "";
+  passwordConfirmErrorText.innerHTML = '';
   if (passwordConfirm.length === 0) {
     passwordConfirmErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
     <span>Este campo no puede estar vacío.</span>`;
@@ -53,8 +53,8 @@ export const validateConfirmPassword = (password, passwordConfirm) => {
 };
 // FUNCION PARA VALIDAR EL NICKNAME
 export const validateNickname = (nickname) => {
-  const nicknameErrorText = document.getElementById("nickname-validation");
-  nicknameErrorText.innerHTML = "";
+  const nicknameErrorText = document.getElementById('nickname-validation');
+  nicknameErrorText.innerHTML = '';
   if (nickname.length === 0) {
     nicknameErrorText.innerHTML = `<img src="./assets/error.png" alt="error" class="error-icon" />
     <span>Debe ingresar un nombre.</span>`;

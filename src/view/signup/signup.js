@@ -3,22 +3,22 @@ import {
   newRegister,
   sendVerification,
   userData,
-} from "../../firebase/firebase.js";
+} from '../../firebase/firebase.js';
 
-import { footer } from "../../components/footer.js";
+import { footer } from '../../components/footer.js';
 
 import {
   validateEmail,
   validatePassword,
   validateConfirmPassword,
   validateNickname,
-} from "./signup-validations.js";
+} from './signup-validations.js';
 
-import { signupErrorHandler } from "./signup-error-handler.js";
+import { signupErrorHandler } from './signup-error-handler.js';
 
 export const signup = () => {
-  const viewSignUp = document.createElement("div");
-  viewSignUp.classList.add("signup-container");
+  const viewSignUp = document.createElement('div');
+  viewSignUp.classList.add('signup-container');
   viewSignUp.innerHTML = `
   <main>
           <div class="container">
@@ -68,38 +68,38 @@ export const signup = () => {
       </main>
 `;
   // GOOGLE LOGIN
-  viewSignUp.querySelector("#login-google").addEventListener("click", () => {
+  viewSignUp.querySelector('#login-google').addEventListener('click', () => {
     loginGoogle();
     // console.log('hola');
   });
 
   // REGISTRO
   viewSignUp
-    .querySelector("#signup-submit-button")
+    .querySelector('#signup-submit-button')
 
-    .addEventListener("click", async (e) => {
+    .addEventListener('click', async (e) => {
       e.preventDefault();
       try {
-        const email = document.querySelector("#signup-email").value;
-        const password = document.querySelector("#signup-password").value;
+        const email = document.querySelector('#signup-email').value;
+        const password = document.querySelector('#signup-password').value;
         const passwordConfirm = document.querySelector(
-          "#signup-confirm-password"
+          '#signup-confirm-password',
         ).value;
-        const nickname = document.querySelector("#signup-nickname").value;
+        const nickname = document.querySelector('#signup-nickname').value;
 
         // console.log({ email, password, passwordConfirm, nickname });
         const emailIsValid = validateEmail(email);
         const passwordIsValid = validatePassword(password);
         const passwordConfirmIsValid = validateConfirmPassword(
           password,
-          passwordConfirm
+          passwordConfirm,
         );
         const nicknameIsValid = validateNickname(nickname);
         if (
-          !emailIsValid ||
-          !passwordIsValid ||
-          !passwordConfirmIsValid ||
-          !nicknameIsValid
+          !emailIsValid
+          || !passwordIsValid
+          || !passwordConfirmIsValid
+          || !nicknameIsValid
         ) {
           return false;
         }
@@ -113,8 +113,8 @@ export const signup = () => {
         userData(userId, userEmail);
         console.log({ userCredential, user, userId });
         await sendVerification();
-        alert("Se envío un enlace de verificación a tu correo.");
-        window.location.hash = "#/login";
+        alert('Se envío un enlace de verificación a tu correo.');
+        window.location.hash = '#/login';
         console.log(userEmail);
         return true;
       } catch (err) {

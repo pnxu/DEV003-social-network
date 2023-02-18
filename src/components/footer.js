@@ -1,6 +1,6 @@
 export const footer = () => {
-  const sectionFooter = document.createElement("div");
-  sectionFooter.classList.add("footer-container");
+  const sectionFooter = document.createElement('div');
+  sectionFooter.classList.add('footer-container');
   sectionFooter.innerHTML = `
   <p class="description-footer">Esta red social ha sido elaborada por:</p>
   <div class="nombres">
