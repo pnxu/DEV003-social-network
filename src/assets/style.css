@@ -16,22 +16,30 @@ body {
   color: #542f17;
 }
 
+#root {
+  display: flex;
+  justify-content: center;
+}
 /* LOGO */
 .logo-container {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #DECFB5;
+  flex-wrap: wrap;
+  background-color: #decfb5;
   height: 110px;
-  width: 400px;
-  margin-top: 0;
+  /* width: 25em; */
+  /* border: 1px solid red; */
+  max-width: 380px;
 }
 
 .logo-container img {
   object-fit: cover;
   height: 80px;
   margin-left: 25px;
-  margin-top: 15px ;
+  margin-top: 15px;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .logo-container h1 {
@@ -91,14 +99,21 @@ body {
 }
 
 /* LOGIN & SIGN UP CONTAINER */
-.container {
+
+.signup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* min-height: 100vh; */
+  /* max-width: 375px; */
+}
+.container {
+  /* width: 380px; */
+  height: fit-content;
+  /* align-items: center; */
   min-height: 100vh;
   margin: 0 auto;
-  overflow: hidden; 
 }
 
 .container h2 {
@@ -110,11 +125,14 @@ body {
 .container-item {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   /* justify-content: space-around; */
   /* flex-wrap: wrap; */
 }
 
-.container-item label, .label-signup {
+.container-item label,
+.label-signup {
   text-align: center;
   color: #542f17;
   padding: 10px;
@@ -126,6 +144,8 @@ body {
   background-color: #decfb5;
   height: 30px;
   padding: 15px;
+  flex-wrap: wrap;
+  width: 25em;
 }
 
 .container-item input:focus {
@@ -150,11 +170,10 @@ body {
   margin-right: 3px;
 }
 
-
 /* container boton iniciar sesion y registro */
 .signup-container-btn {
-  margin-left: 9em;
-  margin-right: 9em;
+  display: flex;
+  justify-content: center;
   margin-top: 15px;
 }
 
@@ -192,17 +211,18 @@ body {
   cursor: pointer;
 }
 
-.login-span.signup-span, .login-span {
+.login-span.signup-span,
+.login-span {
   text-align: center;
   padding: 15px;
   /* margin-top: 15px; */
-  color:red;
+  color: #542f17;
 }
 
-.login-span a, .signup-span a {
+.login-span a,
+.signup-span a {
   color: #f57b53;
 }
-
 
 /* ************************************************ */
 /* SIGNUP VIEW */
@@ -223,34 +243,71 @@ body {
 
 /* ************************************************ */
 /* FOOTER */
-.footer-container{
-  background-color: #DECFB5;
-  height: 110px;
-  width: 400px;
-  margin-top: 10px;
-  display: flex;
 
-}
- footer{
-  text-align: center;
- 
-}
-/*nombre y logo github*/
-.nombres{
+.footer-container {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #decfb5;
+  height: 120px;
+  width: 23em;
+  /* margin: 0 auto; */
+  /* margin-top: 10px; */
+
+  /* border: 1px solid red; */
 }
-.name-footer{
+
+.footer-container p {
+  padding: 5px;
+}
+.nombres {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 5px; */
+  /* border: 1px solid red; */
+}
+
+.nombres a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.name-footer {
   text-align: center;
-  margin:  2px 38px;
-  color: #6583BF;
+  margin: 0 10px;
+  color: #6583bf;
 }
-.logo-github{
+
+.logo-github {
   height: 30px;
-  margin: 0 50px;
+  margin: 0 10px;
 }
 
-@media only screen and (min-width: 800px) {
+/* @media only screen and (min-width: 800px) {
   .container {
     width: 800px;
+  }
+} */
+
+@media screen and (min-width: 768px) {
+  /* #section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  } */
+  .container {
+    height: fit-content;
+    min-height: auto;
+    /* border: 1px solid red; */
+  }
+  .container-item {
+    flex-wrap: wrap;
+  }
+  .login-input {
+    flex-wrap: wrap;
+  }
+  .footer-container {
+    height: 9em;
   }
 }
