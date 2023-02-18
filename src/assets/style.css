@@ -17,20 +17,26 @@ body {
 }
 
 #root {
-  display: flex;
+  display: grid;
+  grid-template-areas: 
+  "logo"
+  "view-container"
+  "footer";
+  height: 100vh;
   justify-content: center;
 }
 /* LOGO */
 .logo-container {
+  grid-area: logo;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   background-color: #decfb5;
   height: 110px;
-  /* width: 25em; */
-  /* border: 1px solid red; */
-  max-width: 380px;
+  position: fixed;
+  width: 100%; 
+  top: 0;
+  left: 0;
 }
 
 .logo-container img {
@@ -99,21 +105,26 @@ body {
 
 /* LOGIN & SIGN UP CONTAINER */
 
-.signup-container {
+.signup-container, .login-container {
+  grid-area: view-container;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  margin-top: 300px;
   /* min-height: 100vh; */
   /* max-width: 375px; */
 }
-.container {
-  /* width: 380px; */
-  height: fit-content;
-  /* align-items: center; */
-  min-height: 100vh;
-  margin: 0 auto;
-}
+/* .login-container {
+  grid-area: view-container;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 150px;
+  
+  /* min-height: 100vh; */
+  /* max-width: 375px; */
+
+
 
 .container h2 {
   color: #6583bf;
@@ -245,11 +256,11 @@ body {
 
 .footer-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   background-color: #decfb5;
   height: 120px;
-  width: 23em;
+  width: 100%;
   /* margin: 0 auto; */
   /* margin-top: 10px; */
 
@@ -283,22 +294,27 @@ body {
   margin: 0 10px;
 }
 
-/* @media only screen and (min-width: 800px) {
-  .container {
-    width: 800px;
-  }
-} */
 
-@media screen and (min-width: 768px) {
-  /* #section {
+@media screen and (min-width: 768px ){
+   #section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  } */
-  .container {
-    height: fit-content;
-    min-height: auto;
-    /* border: 1px solid red; */
+  } 
+  body{
+    background-image: url("books.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .login-container{
+    background-color: #f0f0f8;
+    
+  }
+  .signup-container{
+    background-color: #f0f0f8;
+  }
+  .post-container{
+    background-color: #f0f0f8;
   }
   .container-item {
     flex-wrap: wrap;
@@ -309,4 +325,8 @@ body {
   .footer-container {
     height: 9em;
   }
+}
+
+@media screen and (min-width: 1024px){
+  
 }

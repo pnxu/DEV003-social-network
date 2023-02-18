@@ -8,16 +8,21 @@ export const login = () => {
   const viewLogIn = document.createElement('div');
   viewLogIn.classList.add('login-container');
   viewLogIn.innerHTML = `
-  <main>
-  <div class="container">
+  <header>
   <div class="logo-container">
     <img src="./assets/logo.webp" alt="logo" />
     <h1>Purrfect Books</h1>
   </div>
+  </header>
+
+  <main>
+   <section>
+  <div class="container">
+
   <h2>Ingresar</h2>
   <form id="login-form">
     <div class="container-item">
-      <label for="login-email">Mail</label>
+      <label for="login-email">Correo</label>
       <input type="text" id="login-email" class="login-input" placeholder="ejemplo@email.com" />
     </div>
     <div class="container-item">
@@ -30,6 +35,7 @@ export const login = () => {
       Iniciar sesión
     </button>
     </div>
+    </form>
     <div class="login-google">
     <p>o</p>
     <button type="button" id="login-google" class="login-google-btn">
@@ -41,8 +47,8 @@ export const login = () => {
         >¿Todavía no tienes cuenta? <a href="#/signup" class="span-btn">Regístrate aquí.</a
         ></span>
         </div>
-  </form>
   </div>
+  </section>
   </main>
   `;
   const loginForm = viewLogIn.querySelector('#login-form-button');

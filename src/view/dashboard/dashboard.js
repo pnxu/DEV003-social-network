@@ -9,30 +9,42 @@ export const dashboard = () => {
   const viewDashboard = document.createElement('div');
   viewDashboard.classList.add('post-container');
   viewDashboard.innerHTML = `
-    <div class= "post-div">
+
+    <header>
       <div class="logo-container">
         <img src="assets/logo.webp"/>
         <h1>PURRFECT BOOKS</h1>
       </div>
-      <div class="test">
-      <h4>Nombre</h4>
+      </header>
+<main>
+  <section>
+    <article class="dashboard-post">
+      <div class= "post-div">
+        <div class="test">
+          <h4>Nombre</h4>
+        </div>
+        <form class="post-form" id="post-form">
+          <div class="post-fields">
+            <label for="post-title"></label>
+            <input type="text" id= "post-title" placeholder="Titulo del libro">
+          </div>
+          <div>
+            <label for="description"></label>
+            <textarea id="post-description" placeholder="Reseña"></textarea>
+          </div>  
+          <div>
+            <button class="button-post-save" id="button-post-save">Publicar</button>
+          </div>
+        </form>
       </div>
-      <form class="post-form" id="post-form">
-        <div class="post-fields">
-          <label for="post-title"></label>
-          <input type="text" id= "post-title" placeholder="Titulo del libro">
-        </div>
-        <div>
-          <label for="description"></label>
-          <textarea id="post-description" placeholder="Reseña"></textarea>
-        </div>  
-        <div>
-          <button class="button-post-save" id="button-post-save">Publicar</button>
-        </div>
-      </form>
+    </article>
+  </section>
       <button type="button" id="logout-btn">logout</button>
-      <div id="posts-container"></div>
-    </div>
+      <section>
+        <div id="posts-container">
+      </section>
+</div>
+</main>
   `;
 
   // ADDING POST

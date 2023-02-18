@@ -20,52 +20,57 @@ export const signup = () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup-container');
   viewSignUp.innerHTML = `
-  <main>
-          <div class="container">
+        <header>
           <div class="logo-container">
-          <img src="assets/logo.webp" alt="logo" />
-          <h1>PURRRFECT BOOKS</h1>
+            <img src="assets/logo.webp" alt="logo" />
+            <h1>PURRRFECT BOOKS</h1>
           </div>
-          <h2>Regístrate</h2>
-          <form id="signup-form">
+        </header>
+        
+<main>
+  <section>
+    <div class="container">
+        <h2>Regístrate</h2>
+       <form id="signup-form">
           <div class="container-item">
-          <label class="label-signup" for="signup-email">Correo</label>
-          <input type="text" id="signup-email" class="signup-input" placeholder="ejemplo@email.com"/>
-          <div class="error-feedback-container" id="email-validation"></div>
-          </div>
-          <div class="container-item">
-          <label class="label-signup" for="signup-password">Contraseña</label>
-          <input type="password" id="signup-password" class="signup-input" placeholder="**************" />
-          <div class="error-feedback-container" id="password-validation"></div>
-          </div>
-          <div class="container-item">
-          <label class="label-signup" for="signup-confirm-password">Confirmar contraseña</label>
-          <input type="password" id="signup-confirm-password" class="signup-input" placeholder="**************"/>
-          <div class="error-feedback-container" id="password-confirm-validation"></div>
+            <label class="label-signup" for="signup-email">Correo</label>
+            <input type="text" id="signup-email" class="signup-input" placeholder="ejemplo@email.com"/>
+            <div class="error-feedback-container" id="email-validation"></div>
           </div>
           <div class="container-item">
-          <label class="label-signup" for="signup-nickname">Nombre</label>
-          <input type="text" id="signup-nickname" class="signup-input" placeholder="ej: Juan"/>
-          <div class="error-feedback-container" id="nickname-validation"></div>
+            <label class="label-signup" for="signup-password">Contraseña</label>
+            <input type="password" id="signup-password" class="signup-input" placeholder="**************" />
+            <div class="error-feedback-container" id="password-validation"></div>
+          </div>
+          <div class="container-item">
+            <label class="label-signup" for="signup-confirm-password">Confirmar contraseña</label>
+            <input type="password" id="signup-confirm-password" class="signup-input" placeholder="**************"/>
+            <div class="error-feedback-container" id="password-confirm-validation"></div>
+          </div>
+          <div class="container-item">
+            <label class="label-signup" for="signup-nickname">Nombre</label>
+            <input type="text" id="signup-nickname" class="signup-input" placeholder="ej: Juan"/>
+            <div class="error-feedback-container" id="nickname-validation"></div>
           </div>
           <div class="signup-container-btn">
             <button type="submit" id="signup-submit-button" class="signup-btn">
               Regístrar
             </button>
           </div>
-        </form>
+       </form>
         <div class="login-google">
           <p>o</p>
           <button type="button" id="login-google" class="login-google-btn">
             <img src="assets/btn_google_signin.png" alt="logo-google" />
           </button>
         </div>
-        <div c lass="signup-span">
+        <div class="signup-span">
           <span>¿Ya tienes cuenta?<a href="#/login" class="span-btn">
             Ingresa aqui</a></span>
-          </div>
         </div>
-      </main>
+    </div>
+  </section>
+</main>
 `;
   // GOOGLE LOGIN
   viewSignUp.querySelector('#login-google').addEventListener('click', () => {

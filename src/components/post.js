@@ -6,14 +6,16 @@ export const newPost = async () => {
   let html = '';
   posts.forEach((post) => {
     html += `
+  <article>
     <div class="user-info">
-    <img src=${post.photo}>
-    <p>${post.name}</p>
+      <img src=${post.photo}>
+      <p>${post.name}</p>
     </div>
-      <div class="user-post">
-        <h3>${post.title}</h3>
-        <p>${post.description}</p>
-      </div>
+    <div class="user-post">
+      <h3>${post.title}</h3>
+      <p>${post.description}</p>
+    </div>
+  </article>
     `;
   });
 
