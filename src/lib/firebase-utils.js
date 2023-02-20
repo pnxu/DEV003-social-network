@@ -1,5 +1,5 @@
+// import { initializeApp } from 'firebase/app';
 import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -8,15 +8,24 @@ import {
   signOut,
 } from 'firebase/auth';
 
-import { initializeApp } from 'firebase/app';
+import {
+  collection,
+  addDoc,
+  getDocs,
+  Timestamp,
+  orderBy,
+} from 'firebase/firestore';
 
 export {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
-  initializeApp,
+  collection,
+  addDoc,
+  getDocs,
+  Timestamp,
+  orderBy,
 };

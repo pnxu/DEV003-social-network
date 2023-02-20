@@ -1,29 +1,25 @@
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-  Timestamp,
-  orderBy,
-} from 'firebase/firestore';
-import {
-  getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  collection,
+  addDoc,
+  getDocs,
+  Timestamp,
+  orderBy,
 } from '../lib/firebase-utils';
 
-import { app } from './firebase-config.js';
+import { auth, db } from './firebase-config.js';
 // import { router } from '../lib/router.js';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 const provider = new GoogleAuthProvider();
-const db = getFirestore();
-const auth = getAuth(app);
+// const db = getFirestore();
+// const auth = getAuth(app);
 
 // coleccion de usuarios
 export const userData = async (userId, userEmail) => {
