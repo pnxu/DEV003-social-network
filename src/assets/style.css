@@ -18,13 +18,14 @@ body {
 
 #root {
   display: grid;
-  grid-template-areas: 
-  "logo"
-  "view-container"
-  "footer";
+  grid-template-areas:
+    "logo"
+    "view-container"
+    "footer";
   height: 100vh;
   justify-content: center;
 }
+
 /* LOGO */
 .logo-container {
   grid-area: logo;
@@ -34,7 +35,7 @@ body {
   background-color: #decfb5;
   height: 110px;
   position: fixed;
-  width: 100%; 
+  width: 100%;
   top: 0;
   left: 0;
 }
@@ -105,7 +106,8 @@ body {
 
 /* LOGIN & SIGN UP CONTAINER */
 
-.signup-container, .login-container {
+.signup-container,
+.login-container {
   grid-area: view-container;
   display: flex;
   flex-direction: column;
@@ -114,6 +116,7 @@ body {
   /* min-height: 100vh; */
   /* max-width: 375px; */
 }
+
 /* .login-container {
   grid-area: view-container;
   display: flex;
@@ -122,7 +125,7 @@ body {
   margin-top: 150px;
   
   /* min-height: 100vh; */
-  /* max-width: 375px; */
+/* max-width: 375px; */
 
 
 
@@ -170,10 +173,12 @@ body {
   display: flex;
   margin-top: 5px;
 }
+
 .error-feedback-container span {
   color: red;
   font-size: 15px;
 }
+
 .error-icon {
   width: 18px;
   margin-left: 5px;
@@ -270,6 +275,7 @@ body {
 .footer-container p {
   padding: 5px;
 }
+
 .nombres {
   display: flex;
   justify-content: space-between;
@@ -283,6 +289,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .name-footer {
   text-align: center;
   margin: 0 10px;
@@ -295,38 +302,41 @@ body {
 }
 
 
-@media screen and (min-width: 768px ){
-   #section {
+@media screen and (min-width: 768px) {
+  #section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-  } 
-  body{
+  }
+
+  body {
     background-image: url("books.webp");
     background-size: cover;
     background-repeat: no-repeat;
   }
-  .login-container{
+
+  .login-container {
     background-color: #f0f0f8;
-    
+
   }
-  .signup-container{
+
+  .signup-container {
     background-color: #f0f0f8;
   }
-  .post-container{
+
+  .post-container {
     background-color: #f0f0f8;
   }
+
   .container-item {
     flex-wrap: wrap;
   }
+
   .login-input {
     flex-wrap: wrap;
   }
+
   .footer-container {
     height: 9em;
   }
-}
-
-@media screen and (min-width: 1024px){
-  
 }

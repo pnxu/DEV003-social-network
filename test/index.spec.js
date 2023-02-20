@@ -1,5 +1,4 @@
-// importamos la funcion que vamos a testear
-// import { myFunction } from '../src/lib/index';
+// import { myFunction } from '../src/lib/index'
 import {
   loginGoogle,
   sendVerification,
