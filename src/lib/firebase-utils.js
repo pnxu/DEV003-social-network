@@ -14,6 +14,12 @@ import {
   getDocs,
   Timestamp,
   orderBy,
+  doc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+  onSnapshot,
+  deleteDoc,
 } from 'firebase/firestore';
 
 export {
@@ -28,4 +34,10 @@ export {
   getDocs,
   Timestamp,
   orderBy,
+  doc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+  onSnapshot,
+  deleteDoc,
 };
