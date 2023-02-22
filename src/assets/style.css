@@ -301,6 +301,13 @@ body {
   margin: 0 10px;
 }
 
+.eliminar img {
+  height: 20px;
+}
+
+.eliminar {
+  height: 40px;
+}
 
 @media screen and (min-width: 768px) {
   #section {

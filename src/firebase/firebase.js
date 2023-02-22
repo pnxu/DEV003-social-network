@@ -1,3 +1,4 @@
+import { getDoc } from 'firebase/firestore';
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -10,6 +11,12 @@ import {
   getDocs,
   Timestamp,
   orderBy,
+  doc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+  onSnapshot,
+  deleteDoc,
 } from '../lib/firebase-utils';
 
 import { auth, db } from './firebase-config.js';
@@ -144,3 +151,36 @@ export const getPosts = async (posts) => {
 //   });
 // };
 // observer();
+
+// cargar pagina
+export const onGetPost = async (callback) => {
+  const getPost = await onSnapshot(collection(db, 'posts'), callback, {
+  });
+  return getPost;
+};
+// eliminar post
+export const deletePost = async (id) => {
+  const eliminarPost = await deleteDoc(doc(db, 'posts', id), {
+  });
+  return eliminarPost;
+};
+
+// Dar like
+export const likes = async (id, userId) => {
+  const postRef = doc(db, 'posts', id);
+  const docSnap = await getDoc(postRef);
+  const postData = docSnap.data();
+  const likesCount = postData.likesCounter;
+
+  if (postData.likes.includes(userId)) {
+    await updateDoc(postRef, {
+      likes: arrayRemove(userId),
+      likesCounter: likesCount - 1,
+    });
+  } else {
+    await updateDoc(postRef, {
+      likes: arrayUnion(userId),
+      likesCounter: likesCount + 1,
+    });
+  }
+};
