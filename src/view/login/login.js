@@ -57,9 +57,10 @@ export const login = () => {
     try {
       const email = document.querySelector('#login-email').value;
       const password = document.querySelector('#login-password').value;
-      const response = await loginEmail(email, password);
+      // const response =
+      await loginEmail(email, password);
 
-      console.log({ response });
+      // console.log({ response });
       window.location.hash = '#/dashboard';
     } catch (err) {
       loginErrorHandler(err);

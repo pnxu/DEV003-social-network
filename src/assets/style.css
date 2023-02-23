@@ -301,14 +301,24 @@ body {
   margin: 0 10px;
 }
 
-.eliminar img {
-  height: 20px;
-}
-
 .eliminar {
-  height: 40px;
+  background-image: url("eliminar.png");
+ background-size: cover;
+ height: 40px;
+ width: 40px;
 }
-
+.likeButton{
+  background-image: url("MeGusta_inicial.png");
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
+.editButton{
+  background-image: url("editar.png");
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
 @media screen and (min-width: 768px) {
   #section {
     display: flex;
