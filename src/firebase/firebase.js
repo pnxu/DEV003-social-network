@@ -17,6 +17,7 @@ import {
   arrayUnion,
   onSnapshot,
   deleteDoc,
+  setDoc,
 } from '../lib/firebase-utils';
 
 import { auth, db } from './firebase-config.js';
@@ -158,6 +159,13 @@ export const onGetPost = async (callback) => {
   });
   return getPost;
 };
+// editar post
+export const postEdit = async (id) => {
+  const editPost = await setDoc(doc(db, 'posts', id), {
+  });
+  return editPost;
+};
+
 // eliminar post
 export const deletePost = async (id) => {
   const eliminarPost = await deleteDoc(doc(db, 'posts', id), {
@@ -170,7 +178,7 @@ export const likes = async (id, userId) => {
   const postRef = doc(db, 'posts', id);
   const docSnap = await getDoc(postRef);
   const postData = docSnap.data();
-  const likesCount = postData.likesCounter;
+  const likesCount = postData.likesCounter.length;
 
   if (postData.likes.includes(userId)) {
     await updateDoc(postRef, {
@@ -182,5 +190,6 @@ export const likes = async (id, userId) => {
       likes: arrayUnion(userId),
       likesCounter: likesCount + 1,
     });
+    console.log(likesCount);
   }
 };

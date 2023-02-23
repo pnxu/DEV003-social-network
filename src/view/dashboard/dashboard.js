@@ -1,8 +1,10 @@
 // import { footer } from "../../components/footer.js";
 
-import { addPost, logout } from '../../firebase/firebase.js';
-
-import { newPost } from '../../components/post.js';
+import {
+  addPost, logout, deletePost, onGetPost, likes, postEdit,
+} from '../../firebase/firebase.js';
+import { auth } from '../../firebase/firebase-config';
+// import { newPost } from '../../components/post.js';
 // import { newPost } from "../../components/post.js";
 
 export const dashboard = () => {
@@ -46,7 +48,79 @@ export const dashboard = () => {
 </div>
 </main>
   `;
+  // Se refresca sola la pagina y se crean los post
+  onGetPost((querySnapshot) => {
+    let html = '';
+    const postsContainer = document.getElementById('posts-container');
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+      html += `
+  <article>
+    <div class="user-info">
+      <img src=${post.photo}>
+      <p>${post.name}</p>
+    </div>
+    <di class="user-post">
+      <h3>${post.title}</h3>
+      <p>${post.description}</p>
 
+      <button type="button" data-id='${doc.id}' class='eliminar'></button>
+      <button type="button" class="editButton" data-id='${doc.id}', '${post.title}', '${post.description}'></button>
+    <div>
+      <button type="button" class="likeButton"></button>
+    </div>
+  </article>
+    `;
+    });
+    postsContainer.innerHTML = html;
+
+    // funcion editar
+    const editar = postsContainer.querySelector('.editButton');
+    // const editPost = setDoc(doc(db, 'posts', id), {
+    // });
+    editar.addEventListener('click', (id, titulo, descripcion) => {
+      viewDashboard.querySelector('#post-title').value = titulo;
+      viewDashboard.querySelector('#post-description').value = descripcion;
+
+      // const buttonPublicar = viewDashboard.querySelector('.editButton');
+      editar.addEventListener('click', () => {
+        const tituloPost = viewDashboard.querySelector('#post-title').value;
+        const descripcionPost = viewDashboard.querySelector('#post-description').value;
+        return postEdit.update({
+          title: tituloPost,
+          description: descripcionPost,
+        })
+          .then(() => {
+            console.log('documento editado con exito');
+          })
+          .catch((error) => {
+            console.error('error al editar', error);
+          });
+      });
+    });
+
+    // funcion borrar post
+    const btnDelete = postsContainer.querySelectorAll('.eliminar');
+    btnDelete.forEach((button) => {
+      button.addEventListener('click', ({ target: { dataset } }) => {
+        deletePost(dataset.id);
+      });
+    });
+
+    // funcion dar like
+    const likeButton = postsContainer.querySelectorAll('.likeButton');
+    likeButton.forEach((like) => {
+      like.addEventListener('click', () => {
+        const postIdLike = like.value;
+        const userId = auth.currentUser.uid;
+        likes(postIdLike, userId)
+          .then(() => {
+            console.log(likes(postIdLike, userId));
+          });
+        console.log(likes(postIdLike, userId));
+      });
+    });
+  });
   // ADDING POST
   const dashboardPost = viewDashboard.querySelector('#button-post-save');
   dashboardPost.addEventListener('click', (e) => {
@@ -59,7 +133,6 @@ export const dashboard = () => {
       addPost(title, description).then(() => {
         viewDashboard.querySelector('#post-form').reset();
       });
-      newPost();
     }
   });
 
