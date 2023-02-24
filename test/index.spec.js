@@ -1,6 +1,6 @@
 // import { myFunction } from '../src/lib/index'
 import {
-  loginGoogle,
+  ssoGoogle,
   sendVerification,
   loginEmail,
 } from '../src/firebase/firebase.js';
@@ -21,10 +21,10 @@ describe('login google', () => {
     window.alert = jest.fn();
   });
   it('is a function', () => {
-    expect(typeof loginGoogle).toBe('function');
+    expect(typeof ssoGoogle).toBe('function');
   });
   it('is login properly', async () => {
-    await loginGoogle();
+    await ssoGoogle();
     expect(window.alert).toHaveBeenCalled();
   });
 });

@@ -1,5 +1,5 @@
 import {
-  loginGoogle,
+  ssoGoogle,
   newRegister,
   sendVerification,
   userData,
@@ -74,7 +74,7 @@ export const signup = () => {
 `;
   // GOOGLE LOGIN
   viewSignUp.querySelector('#login-google').addEventListener('click', () => {
-    loginGoogle();
+    ssoGoogle();
     // console.log('hola');
   });
 
