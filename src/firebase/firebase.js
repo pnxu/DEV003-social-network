@@ -66,21 +66,40 @@ export const loginEmail = (email, password) => signInWithEmailAndPassword(auth, 
 export const newRegister = (email, password, username) => createUserWithEmailAndPassword(auth, email, password, username);
 
 // GOOGLE SIGNIN
-export const loginGoogle = () => {
-  signInWithPopup(auth, provider).then((result) => {
-    // This gives you a Google Access Token. You can use it to access the Google API.
-    // const credential =
-    GoogleAuthProvider.credentialFromResult(result);
-    // const token = credential.accessToken;
-    // The signed-in user info.
-    // const user = result.user;
-    // sessionStorage.setItem('token', token); // guarda token en sessionStorage
-    // sessionStorage.setItem('user', JSON.stringify(user)); // guarda usuario en sessionStorage
-    googleUsers();
-    window.location.hash = '#/dashboard';
-    window.alert(result.user.displayName);
-    // ...
-  });
+export const ssoGoogle = async () => {
+  try {
+    const sso = await signInWithPopup(auth, provider);
+    const credential = GoogleAuthProvider.credentialFromResult(sso);
+    if (credential.accessToken) {
+      const token = credential.accessToken;
+      const user = sso.user.uid;
+      localStorage.setItem('sessionUser', user);
+      localStorage.setItem('sessionToken', token);
+      googleUsers();
+      window.alert(sso.user.displayName);
+      window.location.hash = '#/dashboard';
+      return true;
+    }
+    window.alert('LOGIN INVALIDO');
+
+    return false;
+  } catch (err) {
+    console.log('SSO FAILED', err);
+    return err;
+  }
+
+  // signInWithPopup(auth, provider).then((result) => {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+  // const credential = GoogleAuthProvider.credentialFromResult(result);
+  // const token = credential.accessToken;
+  // The signed-in user info.
+  // const user = result.user;
+  // sessionStorage.setItem('token', token); // guarda token en sessionStorage
+  // sessionStorage.setItem('user', JSON.stringify(user)); // guarda usuario en sessionStorage
+  // googleUsers();
+  // window.location.hash = '#/dashboard';
+  // ...
+  // });
   // .catch((error) => {
   // Handle Errors here.
   // const errorCode = error.code;
@@ -97,6 +116,8 @@ export const loginGoogle = () => {
 export const logout = () => {
   signOut(auth).then(() => {
     console.log('logout');
+    localStorage.removeItem('sessionUser');
+    localStorage.removeItem('sessionToken');
     window.location.hash = '#/login';
     // Sign-out successful.
   });

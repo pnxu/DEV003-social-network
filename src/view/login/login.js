@@ -1,4 +1,4 @@
-import { loginEmail, loginGoogle } from '../../firebase/firebase.js';
+import { loginEmail, ssoGoogle } from '../../firebase/firebase.js';
 
 import { loginErrorHandler } from './login-error-handler.js';
 
@@ -66,11 +66,12 @@ export const login = () => {
       loginErrorHandler(err);
     }
   });
-  // LOGIN GOOGLE
-  const loginGoogleBtn = viewLogIn.querySelector('#login-google');
-  loginGoogleBtn.addEventListener('click', () => {
-    loginGoogle();
+  // GOOGLE LOGIN
+  viewLogIn.querySelector('#login-google').addEventListener('click', () => {
+    ssoGoogle();
+    // console.log('hola');
   });
+
   viewLogIn.appendChild(footer());
   return viewLogIn;
 };
