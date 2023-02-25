@@ -55,6 +55,9 @@ body {
 /* **************************************************** */
 /* DASHBOARD VIEW */
 
+.dashboard-post {
+  margin-top: 1000px;
+}
 .post-container {
   display: flex;
   /* flex-wrap: wrap; */
@@ -313,7 +316,7 @@ body {
   height: 40px;
   width: 40px;
 }
-.editButton{
+.edit-button{
   background-image: url("editar.png");
   background-size: cover;
   height: 40px;
