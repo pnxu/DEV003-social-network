@@ -21,6 +21,7 @@ import {
   onSnapshot,
   deleteDoc,
   setDoc,
+  query,
 } from 'firebase/firestore';
 
 export {
@@ -42,4 +43,5 @@ export {
   onSnapshot,
   deleteDoc,
   setDoc,
+  query,
 };

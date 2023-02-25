@@ -18,6 +18,7 @@ import {
   onSnapshot,
   deleteDoc,
   setDoc,
+  query,
 } from '../lib/firebase-utils';
 
 import { auth, db } from './firebase-config.js';
@@ -126,36 +127,40 @@ export const logout = () => {
   // });
 };
 
-// CREAR POST EN DASHBOARD
-export const addPost = async (title, description) => {
+// create post
+export const addPost = (
+  title,
+  description,
+) => {
   // const user = auth.currentUser;
   // const name = user.displayName ? user.displayName : user.email;
-  const docRef = await addDoc(collection(db, 'posts'), {
+  addDoc(collection(db, 'posts'), {
     userId: auth.currentUser.uid,
     name: auth.currentUser.displayName,
     username: auth.currentUser.email,
     photo: auth.currentUser.photoURL,
     title,
     description,
-    datePosted: Timestamp.fromDate(new Date()),
+    datePosted: new Date(),
   });
-  return docRef;
 };
 
 // get data
-export const getPosts = async (posts) => {
-  const querySnapshot = await getDocs(
-    collection(db, posts),
-    orderBy('datePosted', 'desc'),
-  );
-  const postsArr = [];
-  querySnapshot.forEach((document) => {
-    const post = document.data();
-    post.id = document.id;
-    postsArr.push(post);
-  });
-  return postsArr;
-};
+// export const getPosts = async (posts) => {
+//   const querySnapshot = await getDocs(
+//     collection(db, posts),
+//     orderBy('datePosted', 'desc'),
+//   );
+//   const postsArr = [];
+//   querySnapshot.forEach((document) => {
+//     const post = document.data();
+//     post.id = document.id;
+//     postsArr.push(post);
+//   });
+//   return postsArr;
+// };
+
+export const getPosts = (callback) => onSnapshot(query(collection(db, 'posts'), orderBy('datePosted', 'desc')), callback);
 
 // export const observer = () => {
 //   onAuthStateChanged(auth, (user) => {
@@ -180,12 +185,37 @@ export const onGetPost = async (callback) => {
   });
   return getPost;
 };
+
 // editar post
+
 export const postEdit = async (id) => {
   const editPost = await setDoc(doc(db, 'posts', id), {
   });
+  console.log(editPost);
   return editPost;
 };
+
+// editar post
+// export const postEdit = async (id, updateTitle, updateDescription) => {
+//   const postRef = doc(db, 'posts', id);
+//   await updateDoc(postRef, {
+//     title: updateTitle,
+//     description: updateDescription,
+//   });
+// };
+
+// editar post
+// export const postEdit = async (id, updateTitle, updateDescription) => {
+//   const postRef = doc(db, 'posts', id);
+//   const postSnapshot = await getDoc(postRef);
+//   if (!postSnapshot.exists()) {
+//     throw new Error(`Document with id ${id} does not exist`);
+//   }
+//   await updateDoc(postRef, {
+//     title: updateTitle,
+//     description: updateDescription,
+//   });
+// };
 
 // eliminar post
 export const deletePost = async (id) => {

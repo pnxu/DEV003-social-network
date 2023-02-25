@@ -1,17 +1,15 @@
 // import { footer } from "../../components/footer.js";
 
 import {
-  addPost, logout, deletePost, onGetPost, likes, postEdit,
+  addPost, onGetPost, postEdit, deletePost, likes, logout,
 } from '../../firebase/firebase.js';
 import { auth } from '../../firebase/firebase-config';
 // import { newPost } from '../../components/post.js';
-// import { newPost } from "../../components/post.js";
 
 export const dashboard = () => {
   const viewDashboard = document.createElement('div');
   viewDashboard.classList.add('post-container');
   viewDashboard.innerHTML = `
-
     <header>
       <div class="logo-container">
         <img src="assets/logo.webp"/>
@@ -60,12 +58,11 @@ export const dashboard = () => {
       <img src=${post.photo}>
       <p>${post.name}</p>
     </div>
-    <di class="user-post">
+    <div class="user-post">
       <h3>${post.title}</h3>
       <p>${post.description}</p>
-
-      <button type="button" data-id='${doc.id}' class='eliminar'></button>
-      <button type="button" class="editButton" data-id='${doc.id}', '${post.title}', '${post.description}'></button>
+      <button type="button" class='eliminar' data-id='${doc.id}'></button>
+      <button type="button" class="edit-button" data-id='${doc.id}', '${post.title}', '${post.description}'></button>
     <div>
       <button type="button" class="likeButton"></button>
     </div>
@@ -75,29 +72,53 @@ export const dashboard = () => {
     postsContainer.innerHTML = html;
 
     // funcion editar
-    const editar = postsContainer.querySelector('.editButton');
+
+    const editar = postsContainer.querySelectorAll('.editButton');
     // const editPost = setDoc(doc(db, 'posts', id), {
     // });
-    editar.addEventListener('click', (id, titulo, descripcion) => {
-      viewDashboard.querySelector('#post-title').value = titulo;
-      viewDashboard.querySelector('#post-description').value = descripcion;
-
-      // const buttonPublicar = viewDashboard.querySelector('.editButton');
-      editar.addEventListener('click', () => {
-        const tituloPost = viewDashboard.querySelector('#post-title').value;
-        const descripcionPost = viewDashboard.querySelector('#post-description').value;
-        return postEdit.update({
-          title: tituloPost,
-          description: descripcionPost,
-        })
-          .then(() => {
-            console.log('documento editado con exito');
+    editar.forEach((element) => {
+      element.addEventListener('click', (id, titulo, descripcion) => {
+        viewDashboard.querySelector('#post-title').value = titulo;
+        viewDashboard.querySelector('#post-description').value = descripcion;
+        // const buttonPublicar = viewDashboard.querySelector('.editButton');
+        editar.addEventListener('click', () => {
+          const tituloPost = viewDashboard.querySelector('#post-title').value;
+          const descripcionPost = viewDashboard.querySelector('#post-description').value;
+          return postEdit.update({
+            title: tituloPost,
+            description: descripcionPost,
           })
-          .catch((error) => {
-            console.error('error al editar', error);
-          });
+            .then(() => {
+              console.log('documento editado con exito');
+            })
+            .catch((error) => {
+              console.error('error al editar', error);
+            });
+        });
       });
     });
+    // funcion editar
+    // const editar = postsContainer.querySelector('.edit-button');
+    // // const editPost = setDoc(doc(db, 'posts', id), {
+    // // });
+    // editar.addEventListener('click', (id, titulo, descripcion) => {
+    //   postsContainer.querySelector('#post-title').value = titulo;
+    //   postsContainer.querySelector('#post-description').value = descripcion;
+    //   editar.addEventListener('click', () => {
+    //     const tituloPost = viewDashboard.querySelector('#post-title').value;
+    //     const descripcionPost = viewDashboard.querySelector('#post-description').value;
+    //     return postEdit.update({
+    //       title: tituloPost,
+    //       description: descripcionPost,
+    //     })
+    //       .then(() => {
+    //         console.log('documento editado con exito');
+    //       })
+    //       .catch((error) => {
+    //         console.error('error al editar', error);
+    //       });
+    //   });
+    // });
 
     // funcion borrar post
     const btnDelete = postsContainer.querySelectorAll('.eliminar');
@@ -121,6 +142,7 @@ export const dashboard = () => {
       });
     });
   });
+
   // ADDING POST
   const dashboardPost = viewDashboard.querySelector('#button-post-save');
   dashboardPost.addEventListener('click', (e) => {
@@ -130,9 +152,8 @@ export const dashboard = () => {
     if (title === '' || description === '') {
       alert('Debes completar todos los campos');
     } else {
-      addPost(title, description).then(() => {
-        viewDashboard.querySelector('#post-form').reset();
-      });
+      addPost(title, description);
+      viewDashboard.querySelector('#post-form').reset();
     }
   });
 
