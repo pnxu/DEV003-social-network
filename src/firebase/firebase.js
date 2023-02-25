@@ -8,8 +8,6 @@ import {
   signOut,
   collection,
   addDoc,
-  getDocs,
-  Timestamp,
   orderBy,
   doc,
   updateDoc,
@@ -17,7 +15,6 @@ import {
   arrayUnion,
   onSnapshot,
   deleteDoc,
-  setDoc,
   query,
 } from '../lib/firebase-utils';
 
@@ -145,21 +142,6 @@ export const addPost = (
   });
 };
 
-// get data
-// export const getPosts = async (posts) => {
-//   const querySnapshot = await getDocs(
-//     collection(db, posts),
-//     orderBy('datePosted', 'desc'),
-//   );
-//   const postsArr = [];
-//   querySnapshot.forEach((document) => {
-//     const post = document.data();
-//     post.id = document.id;
-//     postsArr.push(post);
-//   });
-//   return postsArr;
-// };
-
 export const getPosts = (callback) => onSnapshot(query(collection(db, 'posts'), orderBy('datePosted', 'desc')), callback);
 
 // export const observer = () => {
@@ -187,35 +169,15 @@ export const onGetPost = async (callback) => {
 };
 
 // editar post
-
-export const postEdit = async (id) => {
-  const editPost = await setDoc(doc(db, 'posts', id), {
+export const postEdit = async (id, title, description) => {
+  const postRef = doc(db, 'posts', id);
+  console.log(postRef);
+  await updateDoc(postRef, {
+    title,
+    description,
   });
-  console.log(editPost);
-  return editPost;
+  console.log(postRef);
 };
-
-// editar post
-// export const postEdit = async (id, updateTitle, updateDescription) => {
-//   const postRef = doc(db, 'posts', id);
-//   await updateDoc(postRef, {
-//     title: updateTitle,
-//     description: updateDescription,
-//   });
-// };
-
-// editar post
-// export const postEdit = async (id, updateTitle, updateDescription) => {
-//   const postRef = doc(db, 'posts', id);
-//   const postSnapshot = await getDoc(postRef);
-//   if (!postSnapshot.exists()) {
-//     throw new Error(`Document with id ${id} does not exist`);
-//   }
-//   await updateDoc(postRef, {
-//     title: updateTitle,
-//     description: updateDescription,
-//   });
-// };
 
 // eliminar post
 export const deletePost = async (id) => {

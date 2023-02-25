@@ -20,7 +20,6 @@ import {
   arrayUnion,
   onSnapshot,
   deleteDoc,
-  setDoc,
   query,
 } from 'firebase/firestore';
 
@@ -42,6 +41,5 @@ export {
   arrayUnion,
   onSnapshot,
   deleteDoc,
-  setDoc,
   query,
 };
