@@ -139,6 +139,8 @@ export const addPost = (
     title,
     description,
     datePosted: new Date(),
+    likes: [],
+    likesCounter: 0,
   });
 };
 
@@ -187,22 +189,39 @@ export const deletePost = async (id) => {
 };
 
 // Dar like
-export const likes = async (id, userId) => {
-  const postRef = doc(db, 'posts', id);
-  const docSnap = await getDoc(postRef);
-  const postData = docSnap.data();
-  const likesCount = postData.likesCounter.length;
 
-  if (postData.likes.includes(userId)) {
-    await updateDoc(postRef, {
-      likes: arrayRemove(userId),
-      likesCounter: likesCount - 1,
-    });
-  } else {
-    await updateDoc(postRef, {
-      likes: arrayUnion(userId),
-      likesCounter: likesCount + 1,
-    });
-    console.log(likesCount);
-  }
+export const removeLike = async (userId, postId) => {
+  const postRef = doc(db, 'posts', postId);
+  const postSnapshot = await getDoc(postRef);
+  const likes = postSnapshot.get('likes');
+  const likesCounter = postSnapshot.get('likesCounter');
+  await updateDoc(postRef, {
+    likes: arrayRemove(userId),
+    likesCounter: likesCounter - 1,
+  });
 };
+
+export const addLike = async (userId, postId) => {
+  const postRef = doc(db, 'posts', postId);
+  const postSnapshot = await getDoc(postRef);
+  const likes = postSnapshot.get('likes');
+  const likesCounter = postSnapshot.get('likesCounter');
+  await updateDoc(postRef, {
+    likes: arrayUnion(userId),
+    likesCounter: likesCounter + 1,
+  });
+};
+
+// export const removeLike = (userId, postId, likesCount) => {
+//   updateDoc(doc(db, 'posts', postId), {
+//     likes: arrayRemove(userId),
+//     likesCounter: likesCount - 1,
+//   });
+// };
+
+// export const addLike = (userId, postId, likesCount) => {
+//   updateDoc(doc(db, 'posts', postId), {
+//     likes: arrayUnion(userId),
+//     likesCounter: likesCount + 1,
+//   });
+// };

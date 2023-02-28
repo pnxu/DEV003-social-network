@@ -58,6 +58,7 @@ body {
 .dashboard-post {
   margin-top: 1000px;
 }
+
 .post-container {
   display: flex;
   /* flex-wrap: wrap; */
@@ -314,22 +315,25 @@ body {
 
 .eliminar {
   background-image: url("eliminar.png");
- background-size: cover;
- height: 40px;
- width: 40px;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
 }
-.likeButton{
+
+.like-button {
   background-image: url("MeGusta_inicial.png");
   background-size: cover;
   height: 40px;
   width: 40px;
 }
-.edit-button{
+
+.edit-button {
   background-image: url("editar.png");
   background-size: cover;
   height: 40px;
   width: 40px;
 }
+
 @media screen and (min-width: 768px) {
   #section {
     display: flex;
