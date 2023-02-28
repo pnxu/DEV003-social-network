@@ -1,7 +1,7 @@
 // import { footer } from "../../components/footer.js";
 
 import {
-  addPost, onGetPost, postEdit, deletePost, likes, logout,
+  addPost, onGetPost, postEdit, deletePost, logout, addLike, removeLike,
 } from '../../firebase/firebase.js';
 import { auth } from '../../firebase/firebase-config';
 // import { newPost } from '../../components/post.js';
@@ -65,7 +65,9 @@ export const dashboard = () => {
           <button type="button" class='eliminar' data-id='${doc.id}'></button>
           <button type="button" class="edit-button" data-id='${JSON.stringify({ post, id: doc.id })}'></button>
         <div>
-          <button type="button" class="likeButton"></button>
+          <button type="button" class="like-button" data-id= '${JSON.stringify({ post, id: doc.id })}'></button>
+          <p>${post.likesCounter}<p>
+          <p>${post.likes}<p>
         </div>
       </article>
     `;
@@ -96,16 +98,20 @@ export const dashboard = () => {
     });
 
     // funcion dar like
-    const likeButton = postsContainer.querySelectorAll('.likeButton');
+    const likeButton = postsContainer.querySelectorAll('.like-button');
     likeButton.forEach((like) => {
-      like.addEventListener('click', () => {
-        const postIdLike = like.value;
+      like.addEventListener('click', ({ target: { dataset } }) => {
+        const { post, id } = JSON.parse(dataset.id);
         const userId = auth.currentUser.uid;
-        likes(postIdLike, userId)
-          .then(() => {
-            console.log(likes(postIdLike, userId));
-          });
-        console.log(likes(postIdLike, userId));
+        const postId = id;
+        // const likes = post.likes;
+        // const likesCount = post.likes.length;
+        console.log(userId, postId);
+        if (post.likes.includes(userId)) {
+          removeLike(userId, postId);
+        } else {
+          addLike(userId, postId);
+        }
       });
     });
   });
