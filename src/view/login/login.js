@@ -32,7 +32,7 @@ export const login = () => {
     </div>
     <div class="signup-container-btn">
     <button type="submit" id="login-form-button" class="login-btn">
-      Iniciar sesión
+      Ingresa
     </button>
     </div>
     </form>

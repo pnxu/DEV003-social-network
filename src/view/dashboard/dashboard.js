@@ -1,10 +1,9 @@
-// import { footer } from "../../components/footer.js";
+import { footer } from '../../components/footer.js';
 
 import {
-  addPost, onGetPost, postEdit, deletePost, logout, addLike, removeLike,
+  addPost, onGetPost, postEdit, deletePost, removeLike, addLike, logout,
 } from '../../firebase/firebase.js';
 import { auth } from '../../firebase/firebase-config';
-// import { newPost } from '../../components/post.js';
 
 export const dashboard = () => {
   const viewDashboard = document.createElement('div');
@@ -14,33 +13,29 @@ export const dashboard = () => {
       <div class="logo-container">
         <img src="assets/logo.webp"/>
         <h1>PURRFECT BOOKS</h1>
+        <button type="button" id="logout-btn"></button>
       </div>
       </header>
 <main>
-  <section>
-    <article class="dashboard-post">
-      <div class= "post-div">
-        <div class="test">
-          <h4>Nombre</h4>
-        </div>
+  <section class="create-post">
+    <article>
+      <div>
+          <h3>Escribe una reseña</h3>
         <form class="post-form" id="post-form">
-        <div class="post-fields">
             <input type="hidden" id="post-id" value="">
-            <label for="post-title"></label>
+            <div>
             <input type="text" id="post-title" placeholder="Titulo del libro">
-          </div>
-          <div>
-            <label for="description"></label>
-            <textarea id="post-description" placeholder="Reseña"></textarea>
-          </div>  
-          <div>
+            </div>
+            <div>
+            <textarea id="post-description" placeholder="Reseña"></textarea> 
+            </div>
+          <div class="btn-save-container">
             <button class="button-post-save" id="button-post-save">Publicar</button>
           </div>
         </form>
       </div>
     </article>
   </section>
-      <button type="button" id="logout-btn">logout</button>
       <section>
         <div id="posts-container">
       </section>
@@ -53,24 +48,42 @@ export const dashboard = () => {
     const postsContainer = document.getElementById('posts-container');
     querySnapshot.forEach((doc) => {
       const post = doc.data();
+      console.log(post.userId);
       html += `
       <article>
         <div class="user-info">
           <img src=${post.photo}>
           <p>${post.name}</p>
         </div>
-        <div class="user-post">
-          <h3>${post.title}</h3>
-          <p>${post.description}</p>
+        `;
+      if (post.userId === auth.currentUser.uid) {
+        html += `
+        <div class="admin-btns">
           <button type="button" class='eliminar' data-id='${doc.id}'></button>
           <button type="button" class="edit-button" data-id='${JSON.stringify({ post, id: doc.id })}'></button>
-        <div>
+          </div>
+        <div class="user-post">
+          <p>${post.title}</p>
+          <span>${post.description}</span>
+          </div>
+          <div class="likes-container">
           <button type="button" class="like-button" data-id= '${JSON.stringify({ post, id: doc.id })}'></button>
-          <p>${post.likesCounter}<p>
-          <p>${post.likes}<p>
-        </div>
+          <p>A ${post.likesCounter} personas les ha gustado esto.</p>
+          </div>
       </article>
     `;
+      } else {
+        html += `<div class="user-post">
+          <p>${post.title}</p>
+          <span>${post.description}</span>
+          </div>
+          <div class="likes-container">
+          <button type="button" class="like-button" data-id= '${JSON.stringify({ post, id: doc.id })}'></button>
+          <p>A ${post.likesCounter} personas les ha gustado esto.</p>
+          </div>
+      </article>
+    `;
+      }
     });
     postsContainer.innerHTML = html;
 
@@ -138,6 +151,6 @@ export const dashboard = () => {
     logout();
   });
 
-  // viewDashboard.appendChild(footer());
+  viewDashboard.appendChild(footer());
   return viewDashboard;
 };
