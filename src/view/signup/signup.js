@@ -65,8 +65,7 @@ export const signup = () => {
           </button>
         </div>
         <div class="signup-span">
-          <span>¿Ya tienes cuenta?<a href="#/login" class="span-btn">
-            Ingresa aqui</a></span>
+          <span>¿Ya tienes cuenta? <a href="#/login" class="span-btn">Ingresa aquí</a></span>
         </div>
     </div>
   </section>
