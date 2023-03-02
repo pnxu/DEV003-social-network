@@ -47,7 +47,7 @@ main {
 }
 
 .logo-container button {
-  background-image: url('box-arrow-left.svg');
+  background-image: url('/assets/box-arrow-left.66fead69.svg');
   background-color: #decfb5;
   background-size: cover;
   /* border-width: #542f17; */
@@ -242,6 +242,7 @@ color: #6583bf;
 
 .create-post input:focus {
   background-color: #f0f0f8;
+  border-color: red;
 }
 
 .create-post textarea:focus {
@@ -346,14 +347,14 @@ color: #6583bf;
 }
 
 #posts-container .admin-btns .eliminar {
-  background-image: url("eliminar.png");
+  background-image: url("/assets/eliminar.dcb19b32.png");
   background-size: cover;
   height: 20px;
   width: 20px;
 }
 
 #posts-container .admin-btns .edit-button {
-  background-image: url("editar.png");
+  background-image: url("/assets/editar.93d9c6f0.png");
   background-size: cover;
   height: 20px;
   width: 20px;
@@ -368,7 +369,7 @@ color: #6583bf;
 }
 
 #posts-container .like-button{
-  background-image: url("MeGusta_inicial.png");
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAidJREFUaEPtmQ1OwzAMhbOTAScDTgacDPSkGlmuHduJ01LRStNgaxx/zz9Js0e7+PW4uP/tBjg7gv8yAm+b6k+tta/t78/WGl6Zi+xgDNkiG2Fb0QhgslfHO0z6HgCJ2MJULwFboSKOTkh8PZARWwAxr14EnltrH8pIqIwLjuIehB/v8uIKZmzBjrRn+tkDgPPcEBzneSsd1tQl9aQQWVvm/RaAdCaUjxuwdJYiRcCjtlQIDUCG21NLRsJKl3BhMoNSyJ2/HgDU6xaRUV1WOoXbowGxE1MD4LkfDbfGwSFGhYBdbudQAN5NRpQnUXhK7oTQIvDN5IwudJkVeORe06crAKQjwGsg24FG1PXGpAG6RePNtuD7dBFXdY8qlm5XtIr0rxSyXBR3bT2ylTizDrj66lrSa5M8CmdAuOojR3sA7j6kKskNOyEBvYUqZGQBiJs6NKcHIKNwRCqltvIegNxM4f+VEGnBIgAaxMwu1cq4tPNeEcuJ5CNmJYTsOOHtdzQCBLMCYtj5bARWQEw5PwqAcby9jjzr0sOOPADIZkToYEsrOiiHkzp+7JKpCe3BPzP+16c0saAZqYnptOE+zALAVgZCtspwt7F6bwWABqEtduXOzxSxJkjvKHKJ89UAViTwOT+an06b6hrwVmz+ffk+qqoGJIR2tFju/IoU4iCHnG6sigCB0O8Jvd8VrA4Z+nw1QMiJmZtugBn1KsbeEahQccbG5SPwA/VxlzHrfLd7AAAAAElFTkSuQmCC");
   background-size: cover;
   height: 25px;
   width: 25px;
@@ -438,7 +439,7 @@ color: #6583bf;
   }
 
   body {
-    background-image: url("books.webp");
+    background-image: url("/assets/books.c1265fca.webp");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -471,7 +472,7 @@ color: #6583bf;
 @media screen and (min-width: 1024px) {
 
   body {
-    background-image: url('books.webp');
+    background-image: url('/assets/books.c1265fca.webp');
     background-size: cover;
     background-repeat: no-repeat;
   }

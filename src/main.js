@@ -1,24 +1,14 @@
-// Este es el punto de entrada de tu aplicacion
-
-// import { myFunction } from './lib/index.js';
-
-// myFunction();
-
 import { router } from './lib/router.js';
+import { observer } from './firebase/firebase.js';
 
 const init = () => {
   window.location.hash = '#/login';
   router(window.location.hash);
-  // observador();
+  observer();
 };
 init();
 
 window.addEventListener('hashchange', () => {
   router(window.location.hash);
+  observer();
 });
-
-// const init = () => {
-//     window.addEventListener('hashchange', () => console.log(window.location.hash))
-// }
-
-// window.addEventListener ('load', init)

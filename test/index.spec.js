@@ -1,4 +1,3 @@
-// import { myFunction } from '../src/lib/index'
 import {
   ssoGoogle,
   sendVerification,
@@ -61,29 +60,3 @@ describe('logoutTest', () => {
     expect('auth/signOut').toBe('auth/signOut');
   });
 });
-// export const loginErrorHandler = jest.fn(
-//   (errorCode) => new Promise((resolve) => {
-//     if (errorCode === 'auth/invalid-email') {
-//       resolve(errorCode);
-//     }
-//   }),
-// );
-
-// window.location.hash = '#/dashboard';
-// describe('El usuario se registra y habilita su acceso a login', () => {
-// //   Allbefore(() => {
-// //     window.alert = jest.fn();
-// });
-// it('should change to login', async () => {
-//   const email = 'pepe@pepe.com';
-//   const password = '123456';
-//   await newRegister(email, password);
-//   expect(window.location.hash).toBe('#/signup');
-// });
-// it('should stay in register', async () => {
-//   const email = 'pepita@pepe.com';
-//   const password = '123456';
-//   window.location.hash = '#/login';
-//   await newRegister(email, password);
-//   expect(window.location.hash).toBe('#/login');
-// });
