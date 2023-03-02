@@ -4,13 +4,16 @@ import { loginErrorHandler } from './login-error-handler.js';
 
 import { footer } from '../../components/footer.js';
 
+import logo from '../../assets/logo.webp';
+import loginGoogle from '../../assets/btn_google_signin.png';
+
 export const login = () => {
   const viewLogIn = document.createElement('div');
   viewLogIn.classList.add('login-container');
   viewLogIn.innerHTML = `
   <header>
   <div class="logo-container">
-    <img src="./assets/logo.webp" alt="logo" />
+    <img src=${logo} alt="logo" />
     <h1>Purrfect Books</h1>
   </div>
   </header>
@@ -39,7 +42,7 @@ export const login = () => {
     <div class="login-google">
     <p>o</p>
     <button type="button" id="login-google" class="login-google-btn">
-      <img src="./assets/btn_google_signin.png" alt="logo-google" />
+      <img src=${loginGoogle} alt="logo-google" />
     </button>
     </div>
     <div class="login-span">

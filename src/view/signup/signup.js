@@ -16,13 +16,16 @@ import {
 
 import { signupErrorHandler } from './signup-error-handler.js';
 
+import logo from '../../assets/logo.webp';
+import loginGoogle from '../../assets/btn_google_signin.png';
+
 export const signup = () => {
   const viewSignUp = document.createElement('div');
   viewSignUp.classList.add('signup-container');
   viewSignUp.innerHTML = `
         <header>
           <div class="logo-container">
-            <img src="assets/logo.webp" alt="logo" />
+            <img src=${logo} alt="logo" />
             <h1>PURRRFECT BOOKS</h1>
           </div>
         </header>
@@ -61,11 +64,11 @@ export const signup = () => {
         <div class="login-google">
           <p>o</p>
           <button type="button" id="login-google" class="login-google-btn">
-            <img src="assets/btn_google_signin.png" alt="logo-google" />
+            <img src=${loginGoogle} alt="logo-google" />
           </button>
         </div>
         <div class="signup-span">
-          <span>¿Ya tienes cuenta? <a href="#/login" class="span-btn">Ingresa aquí</a></span>
+          <span>¿Ya tienes cuenta? <a href="#/login" class="span-btn">Ingresa aquí.</a></span>
         </div>
     </div>
   </section>
@@ -91,7 +94,6 @@ export const signup = () => {
         ).value;
         const nickname = document.querySelector('#signup-nickname').value;
 
-        // console.log({ email, password, passwordConfirm, nickname });
         const emailIsValid = validateEmail(email);
         const passwordIsValid = validatePassword(password);
         const passwordConfirmIsValid = validateConfirmPassword(
@@ -109,17 +111,13 @@ export const signup = () => {
         }
 
         const userCredential = await newRegister(email, password, nickname);
-        console.log(userCredential);
         const user = userCredential.user;
         const userId = user.uid;
         const userEmail = user.email;
-        // const usrname = user.displayName;
         userData(userId, userEmail);
-        console.log({ userCredential, user, userId });
         await sendVerification();
         alert('Se envío un enlace de verificación a tu correo.');
         window.location.hash = '#/login';
-        console.log(userEmail);
         return true;
       } catch (err) {
         signupErrorHandler(err);

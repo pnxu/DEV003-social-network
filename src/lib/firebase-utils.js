@@ -1,4 +1,3 @@
-// import { initializeApp } from 'firebase/app';
 import {
   signInWithPopup,
   GoogleAuthProvider,
@@ -6,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 
 import {
@@ -30,6 +30,7 @@ export {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  onAuthStateChanged,
   collection,
   addDoc,
   getDocs,

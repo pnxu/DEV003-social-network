@@ -6,6 +6,7 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   signOut,
+  onAuthStateChanged,
   collection,
   addDoc,
   orderBy,
@@ -19,13 +20,8 @@ import {
 } from '../lib/firebase-utils';
 
 import { auth, db } from './firebase-config.js';
-// import { router } from '../lib/router.js';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 const provider = new GoogleAuthProvider();
-// const db = getFirestore();
-// const auth = getAuth(app);
 
 // coleccion de usuarios
 export const userData = async (userId, userEmail) => {
@@ -69,53 +65,23 @@ export const ssoGoogle = async () => {
     const sso = await signInWithPopup(auth, provider);
     const credential = GoogleAuthProvider.credentialFromResult(sso);
     if (credential.accessToken) {
-      const token = credential.accessToken;
-      const user = sso.user.uid;
-      localStorage.setItem('sessionUser', user);
-      localStorage.setItem('sessionToken', token);
       googleUsers();
       window.alert(sso.user.displayName);
       window.location.hash = '#/dashboard';
       return true;
     }
     window.alert('LOGIN INVALIDO');
-
     return false;
   } catch (err) {
     console.log('SSO FAILED', err);
     return err;
   }
-
-  // signInWithPopup(auth, provider).then((result) => {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-  // const credential = GoogleAuthProvider.credentialFromResult(result);
-  // const token = credential.accessToken;
-  // The signed-in user info.
-  // const user = result.user;
-  // sessionStorage.setItem('token', token); // guarda token en sessionStorage
-  // sessionStorage.setItem('user', JSON.stringify(user)); // guarda usuario en sessionStorage
-  // googleUsers();
-  // window.location.hash = '#/dashboard';
-  // ...
-  // });
-  // .catch((error) => {
-  // Handle Errors here.
-  // const errorCode = error.code;
-  // const errorMessage = error.message;
-  // The email of the user's account used.
-  // const email = error.customData.email;
-  // The AuthCredential type that was used.
-  // const credential = GoogleAuthProvider.credentialFromError(error);
-  // ...
-  // });
 };
 
 // LOGOUT
 export const logout = () => {
   signOut(auth).then(() => {
     console.log('logout');
-    localStorage.removeItem('sessionUser');
-    localStorage.removeItem('sessionToken');
     window.location.hash = '#/login';
     // Sign-out successful.
   });
@@ -129,8 +95,6 @@ export const addPost = (
   title,
   description,
 ) => {
-  // const user = auth.currentUser;
-  // const name = user.displayName ? user.displayName : user.email;
   addDoc(collection(db, 'posts'), {
     userId: auth.currentUser.uid,
     name: auth.currentUser.displayName,
@@ -144,24 +108,8 @@ export const addPost = (
   });
 };
 
+// obtener posts
 export const getPosts = (callback) => onSnapshot(query(collection(db, 'posts'), orderBy('datePosted', 'desc')), callback);
-
-// export const observer = () => {
-//   onAuthStateChanged(auth, (user) => {
-//     if (user) {
-//       window.location.hash = '#/dashboard';
-//       router(window.location.hash);
-//       // User is signed in, see docs for a list of available properties
-//       // https://firebase.google.com/docs/reference/js/firebase.User
-//       const uid = user.uid;
-//       // ...
-//     } else {
-//       // User is signed out
-//       // ...
-//     }
-//   });
-// };
-// observer();
 
 // cargar pagina
 export const onGetPost = async (callback) => {
@@ -189,7 +137,6 @@ export const deletePost = async (id) => {
 };
 
 // Dar like
-
 export const removeLike = async (userId, postId) => {
   const postRef = doc(db, 'posts', postId);
   const postSnapshot = await getDoc(postRef);
@@ -199,6 +146,7 @@ export const removeLike = async (userId, postId) => {
     likes: arrayRemove(userId),
     likesCounter: likesCounter - 1,
   });
+  console.log(likes);
 };
 
 export const addLike = async (userId, postId) => {
@@ -210,18 +158,21 @@ export const addLike = async (userId, postId) => {
     likes: arrayUnion(userId),
     likesCounter: likesCounter + 1,
   });
+  console.log(likes);
 };
 
-// export const removeLike = (userId, postId, likesCount) => {
-//   updateDoc(doc(db, 'posts', postId), {
-//     likes: arrayRemove(userId),
-//     likesCounter: likesCount - 1,
-//   });
-// };
-
-// export const addLike = (userId, postId, likesCount) => {
-//   updateDoc(doc(db, 'posts', postId), {
-//     likes: arrayUnion(userId),
-//     likesCounter: likesCount + 1,
-//   });
-// };
+export const observer = () => {
+  onAuthStateChanged(auth, (user) => {
+    console.log(user);
+    if (user == null) {
+      // window.location.hash = '#/';
+      // window.location.hash = '#/signup';
+    }
+    if (window.location.hash === '#/' && user) {
+      window.location.hash = '#/dashboard';
+    }
+    if (window.location.hash === '' && user) {
+      window.location.hash = '#/dashboard';
+    }
+  });
+};

@@ -5,17 +5,10 @@ export const signInWithPopup = jest.fn(
 );
 export const initializeApp = jest.fn();
 
-export class GoogleAuthProvider { static credentialFromResult() {} }
+export class GoogleAuthProvider { static credentialFromResult() { } }
 
 export const getAuth = jest.fn();
 
-// export const userCredential = jest.fn(
-//   () => new Promise((resolve) => {
-//     resolve({ userCredential, user: '' });
-//   }),
-// );
-// const response = await loginEmail(email, password);
-// CAsos de validacion de verificacion de correo.
 const userNotVerified = {
   user: { emailVerified: false },
 };
@@ -72,21 +65,6 @@ export const loginErrorHandler = jest.fn(
     }
   }),
 );
-
-// export const logout = jest.fn (
-
-// ) => {
-//   signOut(auth)
-//     .then(() => {
-//       console.log('logout');
-//       window.location.hash = '#/login';
-
-// export const loginErrorHandler = jest.fn(
-//   (errorCode) => new Promise((resolve) => {
-//     if (errorCode === 'auth/invalid-email') {
-//     resolve(errorCode);
-//   )},
-// }),
 
 export const logout = jest.fn(
   (auth) => new Promise((resolve) => {

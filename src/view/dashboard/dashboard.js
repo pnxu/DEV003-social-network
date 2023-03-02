@@ -5,13 +5,16 @@ import {
 } from '../../firebase/firebase.js';
 import { auth } from '../../firebase/firebase-config';
 
+import logo from '../../assets/logo.webp';
+import anonUser from '../../assets/anonymous-user.png';
+
 export const dashboard = () => {
   const viewDashboard = document.createElement('div');
   viewDashboard.classList.add('post-container');
   viewDashboard.innerHTML = `
     <header>
       <div class="logo-container">
-        <img src="assets/logo.webp"/>
+        <img src=${logo} />
         <h1>PURRFECT BOOKS</h1>
         <button type="button" id="logout-btn"></button>
       </div>
@@ -23,7 +26,7 @@ export const dashboard = () => {
           <h3>Escribe una reseña</h3>
         <form class="post-form" id="post-form">
             <input type="hidden" id="post-id" value="">
-            <div>
+            <div class="wrap">
             <input type="text" id="post-title" placeholder="Titulo del libro">
             </div>
             <div>
@@ -52,8 +55,8 @@ export const dashboard = () => {
       html += `
       <article>
         <div class="user-info">
-          <img src=${post.photo}>
-          <p>${post.name}</p>
+          <img src=${post.photo ? post.photo : anonUser}>
+          <p>${post.name ? post.name : post.username}</p>
         </div>
         `;
       if (post.userId === auth.currentUser.uid) {
@@ -99,6 +102,7 @@ export const dashboard = () => {
         inputDescription.value = post.description;
 
         inputId.value = id;
+        inputTitle.focus();
       });
     });
 
@@ -106,7 +110,10 @@ export const dashboard = () => {
     const btnDelete = postsContainer.querySelectorAll('.eliminar');
     btnDelete.forEach((button) => {
       button.addEventListener('click', ({ target: { dataset } }) => {
-        deletePost(dataset.id);
+        const isConfirmed = confirm('¿Está seguro de que desea eliminar esta publicación?');
+        if (isConfirmed) {
+          deletePost(dataset.id);
+        }
       });
     });
 
@@ -117,8 +124,6 @@ export const dashboard = () => {
         const { post, id } = JSON.parse(dataset.id);
         const userId = auth.currentUser.uid;
         const postId = id;
-        // const likes = post.likes;
-        // const likesCount = post.likes.length;
         console.log(userId, postId);
         if (post.likes.includes(userId)) {
           removeLike(userId, postId);
@@ -136,13 +141,18 @@ export const dashboard = () => {
     const title = viewDashboard.querySelector('#post-title').value;
     const description = viewDashboard.querySelector('#post-description').value;
     const id = viewDashboard.querySelector('#post-id').value;
-    console.log(id);
     if (title === '' || description === '') {
       alert('Debes completar todos los campos');
+    } else if (!id) {
+      addPost(title, description);
+      viewDashboard.querySelector('#post-form').reset();
+    } else {
+      const isConfirmed = confirm('¿Está seguro de que desea guardar los cambios en esta publicación?');
+      if (isConfirmed) {
+        postEdit(id, title, description);
+        viewDashboard.querySelector('#post-form').reset();
+      }
     }
-    if (!id) addPost(title, description);
-    else postEdit(id, title, description);
-    return viewDashboard.querySelector('#post-form').reset();
   });
 
   // LOGOUT BUTTON
