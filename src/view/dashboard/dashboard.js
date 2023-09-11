@@ -1,7 +1,13 @@
 import { footer } from '../../components/footer.js';
 
 import {
-  addPost, onGetPost, postEdit, deletePost, removeLike, addLike, logout,
+  addPost,
+  onGetPost,
+  postEdit,
+  deletePost,
+  removeLike,
+  addLike,
+  logout,
 } from '../../firebase/firebase.js';
 import { auth } from '../../firebase/firebase-config';
 
@@ -47,11 +53,12 @@ export const dashboard = () => {
   `;
   // Se refresca sola la pagina y se crean los post
   onGetPost((querySnapshot) => {
+    // console.log("hello", querySnapshot);
     let html = '';
     const postsContainer = document.getElementById('posts-container');
     querySnapshot.forEach((doc) => {
       const post = doc.data();
-      console.log(post.userId);
+      // console.log(post.userId);
       html += `
       <article>
         <div class="user-info">
@@ -63,14 +70,20 @@ export const dashboard = () => {
         html += `
         <div class="admin-btns">
           <button type="button" class='eliminar' data-id='${doc.id}'></button>
-          <button type="button" class="edit-button" data-id='${JSON.stringify({ post, id: doc.id })}'></button>
+          <button type="button" class="edit-button" data-id='${JSON.stringify({
+            post,
+            id: doc.id,
+          })}'></button>
           </div>
         <div class="user-post">
           <p>${post.title}</p>
           <span>${post.description}</span>
           </div>
           <div class="likes-container">
-          <button type="button" class="like-button" data-id= '${JSON.stringify({ post, id: doc.id })}'></button>
+          <button type="button" class="like-button" data-id= '${JSON.stringify({
+            post,
+            id: doc.id,
+          })}'></button>
           <p>A ${post.likesCounter} personas les ha gustado esto.</p>
           </div>
       </article>
@@ -81,13 +94,17 @@ export const dashboard = () => {
           <span>${post.description}</span>
           </div>
           <div class="likes-container">
-          <button type="button" class="like-button" data-id= '${JSON.stringify({ post, id: doc.id })}'></button>
+          <button type="button" class="like-button" data-id= '${JSON.stringify({
+            post,
+            id: doc.id,
+          })}'></button>
           <p>A ${post.likesCounter} personas les ha gustado esto.</p>
           </div>
       </article>
     `;
       }
     });
+    // console.log("postsContainer");
     postsContainer.innerHTML = html;
 
     // funcion editar
@@ -96,7 +113,8 @@ export const dashboard = () => {
       button.addEventListener('click', ({ target: { dataset } }) => {
         const { post, id } = JSON.parse(dataset.id);
         const inputTitle = viewDashboard.querySelector('#post-title');
-        const inputDescription = viewDashboard.querySelector('#post-description');
+        const inputDescription =
+          viewDashboard.querySelector('#post-description');
         const inputId = viewDashboard.querySelector('#post-id');
         inputTitle.value = post.title;
         inputDescription.value = post.description;
@@ -110,7 +128,9 @@ export const dashboard = () => {
     const btnDelete = postsContainer.querySelectorAll('.eliminar');
     btnDelete.forEach((button) => {
       button.addEventListener('click', ({ target: { dataset } }) => {
-        const isConfirmed = confirm('¿Está seguro de que desea eliminar esta publicación?');
+        const isConfirmed = confirm(
+          '¿Está seguro de que desea eliminar esta publicación?'
+        );
         if (isConfirmed) {
           deletePost(dataset.id);
         }
@@ -147,7 +167,9 @@ export const dashboard = () => {
       addPost(title, description);
       viewDashboard.querySelector('#post-form').reset();
     } else {
-      const isConfirmed = confirm('¿Está seguro de que desea guardar los cambios en esta publicación?');
+      const isConfirmed = confirm(
+        '¿Está seguro de que desea guardar los cambios en esta publicación?'
+      );
       if (isConfirmed) {
         postEdit(id, title, description);
         viewDashboard.querySelector('#post-form').reset();
