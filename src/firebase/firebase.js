@@ -54,10 +54,12 @@ const googleUsers = async () => {
 export const sendVerification = () => sendEmailVerification(auth.currentUser);
 
 // LOGIN CON CORREO Y CONTRASEÑA
-export const loginEmail = (email, password) => signInWithEmailAndPassword(auth, email, password);
+export const loginEmail = (email, password) =>
+  signInWithEmailAndPassword(auth, email, password);
 
 // REGISTRO CON CORREO Y CONSTRASEÑA
-export const newRegister = (email, password, username) => createUserWithEmailAndPassword(auth, email, password, username);
+export const newRegister = (email, password, username) =>
+  createUserWithEmailAndPassword(auth, email, password, username);
 
 // GOOGLE SIGNIN
 export const ssoGoogle = async () => {
@@ -91,10 +93,7 @@ export const logout = () => {
 };
 
 // create post
-export const addPost = (
-  title,
-  description,
-) => {
+export const addPost = (title, description) => {
   addDoc(collection(db, 'posts'), {
     userId: auth.currentUser.uid,
     name: auth.currentUser.displayName,
@@ -109,12 +108,15 @@ export const addPost = (
 };
 
 // obtener posts
-export const getPosts = (callback) => onSnapshot(query(collection(db, 'posts'), orderBy('datePosted', 'desc')), callback);
+export const getPosts = (callback) =>
+  onSnapshot(
+    query(collection(db, 'posts'), orderBy('datePosted', 'desc')),
+    callback
+  );
 
 // cargar pagina
 export const onGetPost = async (callback) => {
-  const getPost = await onSnapshot(collection(db, 'posts'), callback, {
-  });
+  const getPost = await onSnapshot(collection(db, 'posts'), callback, {});
   return getPost;
 };
 
@@ -131,8 +133,7 @@ export const postEdit = async (id, title, description) => {
 
 // eliminar post
 export const deletePost = async (id) => {
-  const eliminarPost = await deleteDoc(doc(db, 'posts', id), {
-  });
+  const eliminarPost = await deleteDoc(doc(db, 'posts', id), {});
   return eliminarPost;
 };
 
@@ -163,16 +164,19 @@ export const addLike = async (userId, postId) => {
 
 export const observer = () => {
   onAuthStateChanged(auth, (user) => {
-    console.log(user);
-    if (user == null) {
-      // window.location.hash = '#/';
-      // window.location.hash = '#/signup';
-    }
-    if (window.location.hash === '#/' && user) {
-      window.location.hash = '#/dashboard';
-    }
-    if (window.location.hash === '' && user) {
-      window.location.hash = '#/dashboard';
+    // console.log(user);
+    if (user) {
+      if (
+        window.location.hash === '#/' ||
+        window.location.hash === '#/login' ||
+        window.location.hash === '#/signup'
+      ) {
+        window.location.hash = '#/dashboard';
+      }
+    } else {
+      if (window.location.hash === '#/dashboard') {
+        window.location.hash = '#/';
+      }
     }
   });
 };
