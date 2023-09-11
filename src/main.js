@@ -1,14 +1,12 @@
 import { router } from './lib/router.js';
 import { observer } from './firebase/firebase.js';
 
-const init = () => {
-  window.location.hash = '#/login';
-  router(window.location.hash);
+window.addEventListener('load', () => {
   observer();
-};
-init();
+  router(window.location.hash);
+});
 
 window.addEventListener('hashchange', () => {
-  router(window.location.hash);
   observer();
+  router(window.location.hash);
 });
